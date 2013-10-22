@@ -1,0 +1,10 @@
+package dao.interfaces;
+
+import beans.AdministradorBean;
+
+public interface AdministradorDao {
+	
+	public AdministradorBean
+	login(String administrador, String password) throws Exception;
+		
+}
