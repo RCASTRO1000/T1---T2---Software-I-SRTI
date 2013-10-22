@@ -1,0 +1,14 @@
+package dao.interfaces;
+
+import beans.FichaBean;
+
+
+public interface FichaDao {
+	
+	public boolean registrarFichaInscripcion(String dateIngreso, String dateFinalizada,
+			String cargo, String area, String meses,
+			String nombreEmpresa, String codigo, String informacion) throws Exception;
+	
+	public FichaBean buscarFicha(String codigo) throws Exception; 
+
+}
