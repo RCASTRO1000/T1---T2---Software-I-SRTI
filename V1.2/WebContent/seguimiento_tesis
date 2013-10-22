@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Seguimiento de Tesis</title>
+<script> 
+function abrir(url) { 
+open(url,'','top=400,left=400,width=375,height=275');
+} 
+</script>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="cabecera">
+  <%@ include file="cabecera.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu">
+    <%@ include file="menu.jsp" %>
+  </div>
+  <div id="cuerpo_form">
+  <div id="menuSuperior"><a href="ColocarDocenteEmpresa">Registrar Pr&aacute;ctica</a> &nbsp;| &nbsp;<a href="seguimiento_tesis.jsp">Seguimiento de Pr&aacute;ctica</a></div>
+<form autocomplete="off" method="post" action="Compras_Registrar" >
+  <table width="359" border="0" align="center">
+    <tr>
+    <td>
+    <input type="button" name="buscar" value="Buscar" onClick="javascript:abrir('BuscarAlumno')" />
+    </td>
+    <td>
+      <input type="submit" name="submit" value="Guardar" />
+      </td>
+      <td>
+      <input type="button" name="imprimir" value="Imprimir" onclick="javascript:window.print()" />
+    </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td width="138">&nbsp;</td>
+      <td width="211" align="center"><span class="tit">Ingresar</span><br /></td>
+    </tr>
+    <tr>
+    
+      <td><span class="form">Rubro:</span></td>
+      <td>
+     <select name="txt_rubro">
+  			<option>Buscar Alumno</option>
+			<option>Ropa</option>
+			<option>Estudios</option>
+			<option>Ocio</option>
+	</select></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><img src="images/mail.png" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Precio:</span></td>
+      <td><input id="txt_precio" name="txt_precio" type="text" size="27" /></td>
+    </tr>
+    
+    <tr>
+      <td>&nbsp;</td>      
+    </tr>
+</table>
+</form>     
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
