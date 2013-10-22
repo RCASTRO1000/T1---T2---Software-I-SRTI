@@ -1,0 +1,59 @@
+<!doctype html>
+<%@page import="beans.AlumnoBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Editar Alumno</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+<div id="cabecera">
+  <%@ include file="cabecera_adm.jsp" %>  
+</div>
+<div id="contenido">
+  <div id="menu1">
+    <%@ include file="menu_adm.jsp" %>
+  </div>
+<div id="cuerpo">
+    <div id="registro1">
+		<%
+			AlumnoBean alumno = (AlumnoBean) request.getAttribute("bean");
+		%>
+            <form autocomplete="off" action="Editar_Alumno" method="post">
+            <input type="hidden" name="txt_idAlumno" value="<%=alumno.getIdAlumno() %>" />
+            Nombre: 
+            <input type="text" name="txt_nombre" value="<%=alumno.getNombreAlum() %>" />
+            Apellido Paterno: 
+            <input type="text" name="txt_apellidoP" value="<%=alumno.getApellidoPaternoAlum() %>" />
+            Apellido Materno: 
+            <input type="text" name="txt_apellidoM" value="<%=alumno.getApellidoMaternoAlum() %>" />
+            C&oacute;digo: 
+            <input type="text" name="txt_codigo" value="<%=alumno.getCodigo() %>" />
+            Email: 
+            <input type="text" name="txt_email" value="<%=alumno.getEmailAlum() %>" />
+            Tel&eacute;fono: 
+            <input type="text" name="txt_telefono" value="<%=alumno.getTelefonoAlum() %>" />
+            Celular: 
+            <input type="text" name="txt_celular" value="<%=alumno.getCelularAlum() %>" />
+            Direcci&oacute;n: 
+            <input type="text" name="txt_direccion" value="<%=alumno.getDireccionAlum() %>" />
+            Escuela: 
+            <input type="text" name="txt_escuela" value="<%=alumno.getEscuela() %>" />
+            <br> <br>
+            <input id="button" type="submit" value="Guardar datos" />
+            </form>   
+		</div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
