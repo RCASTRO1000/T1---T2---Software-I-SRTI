@@ -1,0 +1,82 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.EmpresaBean;
+import dao.interfaces.EmpresaDao;
+import dao.interfaces.EstadoDao;
+import dao.interfaces.FichaDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class RegistroFicha
+ */
+@WebServlet("/RegistroFicha")
+public class RegistroFicha extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegistroFicha() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+PrintWriter out = response.getWriter();
+		try {
+			String dateIngreso = request.getParameter("dateIngreso");
+			String dateFinalizada =request.getParameter("dateFinalizada");
+			String nombreEmpresa = request.getParameter("txt_empresa");
+			String area = request.getParameter("txt_area");
+			String cargo = request.getParameter("txt_cargo");
+			String meses = request.getParameter("txt_meses");
+			String codigo = request.getParameter("txt_codigo");
+			String informacion = request.getParameter("txt_informacion");
+			String nombreDoc = request.getParameter("txt_docente");
+			String estado = "En Espera";
+			
+			DaoFactory v1 = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			FichaDao v2 = v1.getFichaDao();
+			EstadoDao v3 = v1.getEstadoDao();
+			
+			boolean bean = v2.registrarFichaInscripcion(dateIngreso, dateFinalizada, cargo, area, meses, nombreEmpresa, codigo, informacion);
+			boolean esta = v3.registrarEstado(codigo, nombreDoc, estado);
+			
+			if((bean) && (esta)){
+				request.setAttribute("mensaje", "Registro Satisfactorio");
+				getServletContext().getRequestDispatcher("/portada.jsp")
+				.forward(request, response);
+			}else{
+				request.setAttribute("mensaje", "ocurrio un error");
+				getServletContext().getRequestDispatcher("/sistema_registro_practicasprepo.jsp")
+				.forward(request, response);
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
