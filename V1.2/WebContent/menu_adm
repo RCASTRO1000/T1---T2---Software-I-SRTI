@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>menu</title>
+<script> 
+function abrir(url) { 
+open(url,'','top=300,left=300,width=300,height=50');
+} 
+</script> 
+</head>
+
+<body>
+<div>
+  <p>Usuarios
+    <br>
+    <a href="registrarUsuario.jsp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRegistrar</a>
+    <br>
+    <a href="Mostrar_Usuario">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspListar</a>
+	<br>
+    <br>
+    Docentes
+    <br>
+    <a href="registrarDocente.jsp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRegistrar</a>
+    <br>
+    <a href="Mostrar_Docente">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspListar</a>
+	<br>
+    <br>
+    Alumnos
+    <br>
+    <a href="registrarAlumno.jsp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRegistrar</a>
+    <br>
+    <a href="Mostrar_Alumno">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspListar</a>
+    <br>
+  </p>
+</div>
+</body>
+</html>
