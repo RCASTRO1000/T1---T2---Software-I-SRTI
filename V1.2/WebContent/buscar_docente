@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Buscar Docente</title>
+</head>
+
+<body>
+<div id="Cuerpo_contactenos"> 
+			<%
+			String mensaje = "";
+        	if(request.getAttribute("mensaje") != null ){
+        		mensaje = (String)request.getAttribute("mensaje");
+        	}
+			%>     
+<form autocomplete="off" method="get" action="BuscarDocente" >
+  <table width="250" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center">Buscar Docente<br /></td>
+    </tr>
+    <tr>
+      <td>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_buscarDoc" name="txt_buscarDoc" type="text" size="15" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="txt_buscarDocAp" name="txt_buscarDocAp" type="text" size="15" /></td>
+    </tr>
+    <tr>
+    <td></td>
+      <td><input type="image" src="images/lupa.png" name="image" border="0" ></td>
+    </tr>
+    <tr>
+   		<td id="mensaje2"><%=mensaje %></td>
+    </tr>
+</table>
+</form>
+     
+        </div>
+</body>
+</html>
