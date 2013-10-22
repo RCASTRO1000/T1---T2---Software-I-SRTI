@@ -1,0 +1,33 @@
+<!doctype html>
+<%@page import="beans.UsuarioBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Portada del Usuario</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+<div id="cabecera">
+  <%@ include file="cabecera.jsp" %>  
+</div>
+<div id="contenido">
+  <div id="menu">
+    <%@ include file="menu.jsp" %>
+  </div>
+  <div id="cuerpo">
+    <div id="img_contenido"><img src="images/tesis.png"></div>
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
