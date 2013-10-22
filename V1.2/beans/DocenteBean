@@ -1,0 +1,70 @@
+package beans;
+
+public class DocenteBean {
+	
+	int idDocente;
+	String nombredoc;
+	String apellidoPaternoDoc;
+	String apellidoMaternoDoc;
+	int telefonoDoc;
+	int celularDoc;
+	String emailDoc;
+	String usuario;
+	String password;
+	
+	public int getIdDocente() {
+		return idDocente;
+	}
+	public void setIdDocente(int idDocente) {
+		this.idDocente = idDocente;
+	}
+	public String getNombredoc() {
+		return nombredoc;
+	}
+	public void setNombredoc(String nombredoc) {
+		this.nombredoc = nombredoc;
+	}
+	public String getApellidoPaternoDoc() {
+		return apellidoPaternoDoc;
+	}
+	public void setApellidoPaternoDoc(String apellidoPaternoDoc) {
+		this.apellidoPaternoDoc = apellidoPaternoDoc;
+	}
+	public String getApellidoMaternoDoc() {
+		return apellidoMaternoDoc;
+	}
+	public void setApellidoMaternoDoc(String apellidoMaternoDoc) {
+		this.apellidoMaternoDoc = apellidoMaternoDoc;
+	}
+	public int getTelefonoDoc() {
+		return telefonoDoc;
+	}
+	public void setTelefonoDoc(int telefonoDoc) {
+		this.telefonoDoc = telefonoDoc;
+	}
+	public int getCelularDoc() {
+		return celularDoc;
+	}
+	public void setCelularDoc(int celularDoc) {
+		this.celularDoc = celularDoc;
+	}
+	public String getEmailDoc() {
+		return emailDoc;
+	}
+	public void setEmailDoc(String emailDoc) {
+		this.emailDoc = emailDoc;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+}
