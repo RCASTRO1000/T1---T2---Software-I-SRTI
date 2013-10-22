@@ -1,0 +1,40 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import beans.AdministradorBean;
+import dao.interfaces.AdministradorDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_AdministradorDao 
+				extends MySqlDaoFactory implements AdministradorDao{
+
+	@Override
+	public AdministradorBean login(String administrador, String password)
+			throws Exception {
+		AdministradorBean administrador1 = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = 
+					stmt.executeQuery("select * from t_administrador " +
+					"where administrador='"+administrador+"' and password='"+password+"'");
+			
+			if(rs.next()){
+				administrador1 = new AdministradorBean();
+				administrador1.setIdAdministrador(rs.getInt("idAdministrador"));
+				administrador1.setNombre(rs.getString("nombre"));
+				administrador1.setApellido(rs.getString("apellido"));
+				
+			}
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		return administrador1;
+	}
+
+}
