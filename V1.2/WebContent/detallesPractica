@@ -1,0 +1,72 @@
+<!doctype html>
+<%@page import="beans.FichaBean"%>
+<%@page import="beans.AlumnoBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Informaci&oacute;n del Alumno</title>
+</head>
+
+<body>
+		<%
+			AlumnoBean alumno = (AlumnoBean) request.getAttribute("alumno");
+		%> 
+		<%
+			FichaBean ficha = (FichaBean) request.getAttribute("ficha");
+		%> 
+  <table width="359" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center"><span class="tit">Datos del Alumno<br /></span></td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" value="<%=alumno.getNombreAlum() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellidos:</span></td>
+      <td><input id="txt_apellidos" name="txt_apellidos" type="text" size="27" value="<%=(alumno.getApellidoPaternoAlum()+ " " +alumno.getApellidoMaternoAlum()) %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Email:</span></td>
+      <td><input id="txt_email" name="txt_email" type="text" size="27" value="<%=alumno.getEmailAlum() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">C&oacute;digo: </span></td>
+      <td><input id="txt_codigo" name="txt_codigo" type="text" size="27" value="<%=alumno.getCodigo() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Escuela: </span></td>
+      <td><input id="txt_escuela" name="txt_escuela" type="text" size="27" value="<%=alumno.getEscuela() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Cargo: </span></td>
+      <td><input id="txt_cargo" name="txt_cargo" type="text" size="27" value="<%=ficha.getCargo() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">&Aacute;rea: </span></td>
+      <td><input id="txt_area" name="txt_area" type="text" size="27" value="<%=ficha.getArea() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Meses que trabajo: </span></td>
+      <td><input id="txt_meses" name="txt_meses" type="text" size="27" value="<%=ficha.getMeses() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre del Empresa: </span></td>
+      <td><input id="txt_nomEmpresa" name="txt_nomEmpresa" type="text" size="27" value="<%=ficha.getNombreEmpresa() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Informaci&oacute;n del Alumno: </span></td>
+      <td><textarea name="txt_informacion" id="txt_informacion" class="textarea" rows="5" cols="30" readonly ><%=ficha.getInformacion() %></textarea></td>
+    </tr>
+</table>
+</body>
+</html>
