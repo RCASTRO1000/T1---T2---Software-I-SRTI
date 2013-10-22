@@ -1,0 +1,60 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
+import beans.EmpresaBean;
+import dao.interfaces.EmpresaDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_EmpresaDao 
+				extends MySqlDaoFactory implements EmpresaDao{
+
+	@Override
+	public Vector<EmpresaBean> listarEmpresa() throws Exception {
+		Vector<EmpresaBean> empresa = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_empresa");
+			
+			empresa = new Vector<EmpresaBean>();
+			while(rs.next()){
+				EmpresaBean bean = new EmpresaBean();
+				bean.setNombreEmpresa(rs.getString("nombreEmpresa"));				
+				
+				empresa.add( bean );
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return empresa;
+		}
+
+	@Override
+	public boolean registrarEmpresa(String nombreEmpresa, String direccionEmp, int telefonoEmp,
+			String fax, String actividadEconomica, String pagWeb,
+			String emailEmp, String ciudad, String tamEmpresa) throws Exception {
+		boolean flag = false;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("insert into t_empresa (nombreEmpresa, direccionEmp, telefonoEmp, fax, actividadEconomica, pagWeb, emailEmp, ciudad, tamEmpresa) " +
+					"values ('"+nombreEmpresa+"','"+direccionEmp+"','"+telefonoEmp+"','"+fax+"','"+actividadEconomica+"','"+pagWeb+"','"+emailEmp+"','"+ciudad+"','"+tamEmpresa+"')");
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		return flag;
+	}
+
+}
