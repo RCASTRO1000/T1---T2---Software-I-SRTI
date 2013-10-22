@@ -1,0 +1,55 @@
+<!doctype html>
+<%@page import="beans.DocenteBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Buscar Docente</title>
+</head>
+<body>
+<div id="Cuerpo_contactenos">  
+		<%
+			DocenteBean docente = (DocenteBean) request.getAttribute("bean");
+		%>    
+<form name="formBuscar" autocomplete="off" method="post" action="BuscarAlumno" >
+  <table width="250" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center">Seleccionar Docente<br /></td>
+    </tr>
+    <tr>
+      <td>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="name" name="nombreDocente" type="text" size="15" value="<%=docente.getNombredoc() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="email" name="apellidoDocente" type="text" size="15" value="<%=docente.getApellidoPaternoDoc() %>" readonly /></td>
+    </tr>
+    <tr>
+        <td><a href="buscar_docente.jsp"><img src="images/reload.png" border="0" ></a></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre</span></td>
+      <td><span class="form">Apellido P.</span></td>
+      <td><span class="form">Apellido M.</span></td>
+    </tr>
+    <tr>      
+      <td><input id="buscarNombre" name="buscarNombre" type="text" size="15" value="<%=docente.getNombredoc() %>" readonly /></td>
+      <td><input id="buscarApellido" name="buscarApellidoPDoc" type="text" size="15" value="<%=docente.getApellidoPaternoDoc() %>" readonly /></td>
+      <td><input id="buscarCodigo" name="buscarApellidoMDoc" type="text" size="15" value="<%=docente.getApellidoMaternoDoc() %>" readonly/></td>
+      <td><input type="radio" name="radioSeleccionarDoc" value="Seleccionar" onClick="window.close()"></td>
+    </tr>
+</table>
+</form>
+
+     
+        </div>
+</body>
+</html>
