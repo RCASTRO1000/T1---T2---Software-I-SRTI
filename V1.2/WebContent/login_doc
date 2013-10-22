@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<title>Docente Login</title>
+<link href="css/screen.css" rel="stylesheet" type="text/css">
+<!--  jquery core -->
+<script src="<%=request.getContextPath() %>/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+
+<!-- Custom jquery scripts -->
+<script src="<%=request.getContextPath() %>/js/custom_jquery.js" type="text/javascript"></script>
+
+<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
+<script src="<%=request.getContextPath() %>/js/jquery.pngFix.pack.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$(document).pngFix( );
+});
+</script>
+<script> 
+function abrir(url) { 
+open(url,'','top=400,left=400,width=355,height=250');
+} 
+</script> 
+</head>
+<body id="login-bg"> 
+ <%
+            	String mensaje = "";
+            	if(request.getAttribute("mensaje") != null ){
+            		mensaje = (String)request.getAttribute("mensaje");
+            	}
+ %>
+ <%=mensaje %>
+<!-- Start: login-holder -->
+<div id="login-holder">
+
+	<!-- start logo -->
+	<div id="logo-login">
+		
+	</div>
+	<!-- end logo -->
+	
+	<div class="clear"></div>
+	
+	
+	
+	<!--  start loginbox ................................................................................. -->
+	<div id="loginbox">
+	
+	<!--  START LOGIN -inner -->
+	<div id="login-inner">
+		<form autocomplete="off" name="frm_usuario" method="post" action="<%=application.getContextPath() %>/DocenteLogin">
+		<table border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<th style="color:#FFFFFF">Usuario</th>
+			<td><input type="text"  class="login-inp" name ="txt_user" /></td>
+		</tr>
+		<tr>
+			<th style="color:#FFFFFF">Contraseña</th>
+			<td><input type="password" value="************"  onfocus="this.value=''" class="login-inp" name ="txt_pass"/></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td valign="top"><label for="login-check"></label></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+			  
+                <input type="submit" class="submit-login" name="btn_login" value="ingresar"/></td>				
+		</tr>
+		<tr> <td></td>
+              <td><div align="right" id="register"><a href="login_adm.jsp">Administrador &nbsp;</a>
+              <a href="index.jsp">Usuario &nbsp;</a></div></td>
+		</tr>
+		</table>
+		</form>
+	</div>
+ 	<!--  end login-inner -->
+	<div class="clear"></div>
+	<a href="<%=application.getContextPath() %>/forgot.jsp" class="forgot-pwd"> <%=mensaje %></a>
+	
+ </div>
+ <!--  end loginbox --><!-- End: login-holder -->
+</div>
+</body>
+</html>
