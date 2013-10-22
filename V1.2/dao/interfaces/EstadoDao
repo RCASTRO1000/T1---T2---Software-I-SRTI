@@ -1,0 +1,15 @@
+package dao.interfaces;
+
+import java.util.Vector;
+
+import beans.EstadoBean;
+
+public interface EstadoDao {
+	
+	public boolean registrarEstado(String codigoAlum, String nombreDoc, String estado) throws Exception;
+	
+	public Vector<EstadoBean> Listar(String nombreDoc) throws Exception;
+	
+	public boolean actualizarEstado(String estado, int codigo) throws Exception;
+
+}
