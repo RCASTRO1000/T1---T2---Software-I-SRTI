@@ -1,0 +1,23 @@
+package dao.interfaces;
+
+import java.util.Vector;
+
+import beans.AlumnoBean;
+
+public interface AlumnoDao {
+	
+	public AlumnoBean buscarAlumno(String codigo) throws Exception;
+	
+	public Vector<AlumnoBean> buscarAlumnoAp(String apellido) throws Exception;
+	
+	public boolean registrarAlumno(String nombreAlum, String apellidoPaternoAlum, String apellidoMaternoAlum, String codigo, String emailAlum, int telefonoAlum, int celularAlum, String direccionAlum, String escuela) throws Exception;
+	
+	public Vector<AlumnoBean> mostrarAlumnos() throws Exception;
+	
+	public boolean eliminarAlumno(int id) throws Exception;
+	
+	public boolean editarAlumno(AlumnoBean alumno) throws Exception;
+	
+	public AlumnoBean seleccionarAlumno(int codigo) throws Exception;
+
+}
