@@ -1,0 +1,87 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.UsuarioBean;
+
+import dao.interfaces.UsuarioDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class Editar_Usuario
+ */
+@WebServlet("/Editar_Usuario")
+public class Editar_Usuario extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Editar_Usuario() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 String codigo = request.getParameter("codigo1");
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			UsuarioDao var2 = dao.getUsuarioDao();
+			UsuarioBean bean = var2.seleccionarUsuario(Integer.parseInt(codigo));
+			
+			request.setAttribute("bean", bean);
+			
+			getServletContext().getRequestDispatcher("/editar_usuario.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			UsuarioBean bean = new UsuarioBean();
+			bean.setIdUsuario( Integer.parseInt(request.getParameter("txt_idUsuario")) );
+			bean.setNombre( request.getParameter("txt_nombre") );
+			bean.setApellido( request.getParameter("txt_apellido") );
+			bean.setUsuario( request.getParameter("txt_usuario") );
+			bean.setPassword( request.getParameter("txt_password") );
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			UsuarioDao var2 = dao.getUsuarioDao();
+			boolean flag = var2.editarUsuario(bean);
+			
+			if(flag){
+				request.setAttribute("mensaje_adm", "Usuario Actualizado");
+			}else{
+				request.setAttribute("mensaje_adm", "OCurrio un error");
+			}
+			
+			getServletContext().getRequestDispatcher("/mensaje_adm.jsp").forward(request, response);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
