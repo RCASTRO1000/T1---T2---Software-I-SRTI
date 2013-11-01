@@ -1,0 +1,74 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import beans.DocenteBean;
+import beans.FichaBean;
+import dao.interfaces.Buscar_Ficha_Docente;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_Buscar_Ficha_Docente
+				extends MySqlDaoFactory implements Buscar_Ficha_Docente{
+
+	@Override
+	public DocenteBean buscarDocente(String nombreDoc, String apellidoDoc)
+			throws Exception {
+		// TODO Auto-generated method stub
+				DocenteBean docente = null;
+				
+				
+				try {
+					Connection con = MySqlDaoFactory.obtenerConexion();
+					Statement stmt = con.createStatement();
+					
+					ResultSet rs = 
+							stmt.executeQuery("select * from t_docente " +
+							"where nombredoc='"+ nombreDoc +"'and apellidoPaternoDoc='" + apellidoDoc + "'");
+					
+					while(rs.next()){
+						docente = new DocenteBean();
+						docente.setNombredoc(rs.getString("nombredoc"));
+						docente.setApellidoPaternoDoc(rs.getString("apellidoPaternoDoc"));
+						docente.setApellidoMaternoDoc(rs.getString("apellidoMaternoDoc"));
+						
+					}
+
+				} catch (Exception e) {
+					System.out.print(e.getMessage());
+				}
+				return docente;
+			}
+
+	@Override
+	public FichaBean buscarFicha(String codigo) throws Exception {
+		// TODO Auto-generated method stub
+		FichaBean ficha = null;
+		
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = 
+					stmt.executeQuery("select * from t_ficha_inscripcion " +
+					"where codigo='"+codigo+"'");
+			
+			while(rs.next()){
+				ficha = new FichaBean();
+				ficha.setCargo(rs.getString("cargo"));
+				ficha.setArea(rs.getString("area"));
+				ficha.setMeses(rs.getString("meses"));
+				ficha.setNombreEmpresa(rs.getString("nombreEmpresa"));
+				ficha.setInformacion(rs.getString("informacion"));
+				
+			}
+
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return ficha;
+	}
+
+}
