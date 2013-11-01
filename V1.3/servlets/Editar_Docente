@@ -1,0 +1,91 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.DocenteBean;
+
+import dao.interfaces.DocenteDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class Editar_Docente
+ */
+@WebServlet("/Editar_Docente")
+public class Editar_Docente extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Editar_Docente() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 String codigo = request.getParameter("codigo1");
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			DocenteDao var2 = dao.getDocenteDao();
+			DocenteBean bean = var2.seleccionarDocente(Integer.parseInt(codigo));
+			
+			request.setAttribute("bean", bean);
+			
+			getServletContext().getRequestDispatcher("/editar_docente.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			DocenteBean bean = new DocenteBean();
+			bean.setIdDocente( Integer.parseInt(request.getParameter("txt_idDocente")) );
+			bean.setNombredoc( request.getParameter("txt_nombre") );
+			bean.setApellidoPaternoDoc( request.getParameter("txt_apellidoP") );
+			bean.setApellidoMaternoDoc( request.getParameter("txt_apellidoM") );
+			bean.setTelefonoDoc( Integer.parseInt(request.getParameter("txt_telefono")) );
+			bean.setCelularDoc( Integer.parseInt(request.getParameter("txt_celular")) );
+			bean.setEmailDoc( request.getParameter("txt_email") );
+			bean.setUsuario( request.getParameter("txt_usuario") );
+			bean.setPassword( request.getParameter("txt_password") );
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			DocenteDao var2 = dao.getDocenteDao();
+			boolean flag = var2.editarDocente(bean);
+			
+			if(flag){
+				request.setAttribute("mensaje_adm", "Docente Actualizado");
+			}else{
+				request.setAttribute("mensaje_adm", "OCurrio un error");
+			}
+			
+			getServletContext().getRequestDispatcher("/mensaje_adm.jsp").forward(request, response);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
