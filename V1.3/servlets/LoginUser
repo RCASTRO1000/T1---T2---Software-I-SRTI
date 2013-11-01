@@ -1,0 +1,90 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import beans.UsuarioBean;
+import dao.interfaces.Login;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class Cuenta_Login
+ */
+@WebServlet("/LoginUser")
+public class LoginUser extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoginUser() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+				PrintWriter out = response.getWriter();
+				try {
+					HttpSession sesion = request.getSession();
+					sesion.removeAttribute("usuario");
+					sesion.removeAttribute("password");
+					
+					//sesion.invalidate();
+					
+					response.sendRedirect("portada.jsp");
+					
+				} catch (Exception e) {
+					out.print(e.getMessage());
+				}
+			}
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+				PrintWriter out = response.getWriter();
+				try {
+					String usuario = request.getParameter("txt_user");
+					String clave = request.getParameter("txt_pass");
+					
+					DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+					Login usuariodao = dao.getLogin();
+					UsuarioBean usuariobean = usuariodao.loginUser(usuario, clave);
+					
+					
+					
+					if(usuariobean == null){
+						request.setAttribute("mensaje", "Datos incorrectos");
+						getServletContext().getRequestDispatcher("/index.jsp")
+															.forward(request, response);
+					}else{
+						HttpSession sesion = request.getSession();
+						
+						sesion.setAttribute("usuario", usuariobean.getUsuario());
+						sesion.setAttribute("password", usuariobean.getPassword());
+													
+						getServletContext().getRequestDispatcher("/portada.jsp")
+							.forward(request, response);
+						
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					out.print(e.getMessage());
+				}
+			}
+
+		}
