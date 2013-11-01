@@ -1,0 +1,71 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.interfaces.DocenteDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class RegistrarUsuario
+ */
+@WebServlet("/RegistrarDocente")
+public class RegistrarDocente extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegistrarDocente() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+PrintWriter out = response.getWriter();
+		
+		try {
+			String nombre = request.getParameter("txt_nombre");
+			String apellidoP = request.getParameter("txt_apellidoP");
+			String apellidoM = request.getParameter("txt_apellidoM");
+			Integer telefono = Integer.parseInt(request.getParameter("txt_telefono"));
+			Integer celular = Integer.parseInt(request.getParameter("txt_celular"));
+			String email = request.getParameter("txt_email");
+			String usuario = request.getParameter("txt_usuario");
+			String password = request.getParameter("txt_contrasena");
+			
+			DaoFactory v1 = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			DocenteDao v2 = v1.getDocenteDao();
+			boolean v3 = v2.registrarDocente(nombre, apellidoP, apellidoM, telefono, celular, email, usuario, password);
+				
+			if(v3){
+				request.setAttribute("mensaje_adm", "Registro Satisfactorio");
+			}else{
+				request.setAttribute("mensaje_adm", "ocurrio un error");
+			}
+			getServletContext().getRequestDispatcher("/mensaje_adm.jsp")
+				.forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
