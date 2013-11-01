@@ -1,0 +1,88 @@
+<!doctype html>
+<%@page import="beans.EstadoBean"%>
+<%@page import="java.util.Vector"%>
+<%@page import="beans.DocenteBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Listado de Asginaci&oacute;n de Pr&aacute;cticas Pre Profesionales</title>
+<script> 
+function correo(url) { 
+open(url,'','top=250,left=500,width=385,height=300');
+}
+function detallesPractica(url) { 
+open(url,'','top=100,left=500,width=385,height=450');
+} 
+</script>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+		<%
+  			DocenteBean docente = (DocenteBean) request.getAttribute("usuariobean");
+		%> 
+<div id="cabecera">
+  <%@ include file="cabecera_doc.jsp" %>  
+</div>
+<div id="contenido">
+  <div id="menu">
+  <a href="javascript:document.location.reload();">Mostrar Casos Asignados</a>
+  </div>
+  <div id="cuerpo">
+  		<%
+			Vector<EstadoBean> listar = (Vector)request.getAttribute("listar");
+		%> 
+  <h2>Lista de Casos Asignados</h2>
+  	            <form autocomplete="off" action="Actualizar_Estado" method="post">
+			<table id="cuerpo_">
+	<thead>
+	<tr>
+	<td id="eliminarEditar">Estado:</td>
+	<td>
+				<select name="txt_estado">
+		  			<option>En Espera</option>
+		  			<option>Aprobado</option>
+					<option>Desaprobado</option>
+				</select>
+			</td>
+	</tr>
+		<tr>
+			<td id="eliminarEditar">Alumno:</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><input id="imagen" name="imagen" type="image" src="images/guardar.png"/></td>	
+		</tr>
+	</thead>
+	<tbody>
+			<%
+	    		for(int i=0; i<listar.size(); i++){
+	        %>
+			<tr class="listado">
+	        		<td><%=listar.get(i).getCodigoAlum() %></td>
+	        	
+			<td id="eliminarEditar">
+				<a href="javascript:detallesPractica('DetallesPracticante?codigo=<%=listar.get(i).getCodigoAlum() %>')">Detalles</a>
+				<a href="javascript:correo('EnviarPreguntas?codigo1=<%=listar.get(i).getCodigoAlum() %>')">Preguntas</a>
+				
+			</td>
+			<td><input type="text" value="<%=listar.get(i).getEstado() %>" size="8" disabled="disabled"></td>
+			<td><input type="radio" name="radioSeleccionar" value=<%=listar.get(i).getIdEstado() %> ></td>
+			<% } %>		
+		</tr>
+	</tbody>
+	</table>
+   </form>
+  </div> 
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
