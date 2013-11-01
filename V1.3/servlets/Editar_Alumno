@@ -1,0 +1,93 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.AlumnoBean;
+
+import dao.interfaces.AlumnoDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class Editar_Alumno
+ */
+@WebServlet("/Editar_Alumno")
+public class Editar_Alumno extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Editar_Alumno() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 String codigo = request.getParameter("codigo1");
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			AlumnoDao var2 = dao.getAlumnoDao();
+			AlumnoBean bean = var2.seleccionarAlumno(Integer.parseInt(codigo));
+			
+			request.setAttribute("bean", bean);
+			
+			getServletContext().getRequestDispatcher("/editar_alumno.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			AlumnoBean bean = new AlumnoBean();
+			bean.setIdAlumno( Integer.parseInt(request.getParameter("txt_idAlumno")) );
+			bean.setNombreAlum( request.getParameter("txt_nombre") );
+			bean.setApellidoPaternoAlum( request.getParameter("txt_apellidoP") );
+			bean.setApellidoMaternoAlum( request.getParameter("txt_apellidoM") );
+			bean.setCodigo( request.getParameter("txt_codigo") );
+			bean.setEmailAlum( request.getParameter("txt_email") );
+			bean.setTelefonoAlum( Integer.parseInt(request.getParameter("txt_telefono")) );
+			bean.setCelularAlum( Integer.parseInt(request.getParameter("txt_celular")) );
+			bean.setDireccionAlum( request.getParameter("txt_direccion") );
+			bean.setEscuela( request.getParameter("txt_escuela") );
+
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			AlumnoDao var2 = dao.getAlumnoDao();
+			boolean flag = var2.editarAlumno(bean);
+			
+			if(flag){
+				request.setAttribute("mensaje_adm", "Alumno Actualizado");
+			}else{
+				request.setAttribute("mensaje_adm", "OCurrio un error");
+			}
+			
+			getServletContext().getRequestDispatcher("/mensaje_adm.jsp").forward(request, response);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
