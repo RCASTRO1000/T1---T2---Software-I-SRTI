@@ -1,0 +1,55 @@
+package daofactory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import dao.interfaces.*;
+import dao.mysql.*;
+
+public class MySqlDaoFactory extends DaoFactory {
+	
+	public UsuarioDao getUsuarioDao(){
+		return new MySql_UsuarioDao();
+	}
+	public AlumnoDao getAlumnoDao(){
+		return new MySql_AlumnoDao();
+	}
+	public DocenteDao getDocenteDao(){
+		return new MySql_DocenteDao();
+	}
+	public EmpresaDao getEmpresaDao(){
+		return new MySql_EmpresaDao();
+	}
+	public FichaDao getFichaDao(){
+		return new MySql_FichaDao();
+	}
+	public EstadoDao getEstadoDao(){
+		return new MySql_EstadoDao();
+	}
+	public Buscar_Ficha_Docente getBuscar_Ficha_Docente(){
+		return new MySql_Buscar_Ficha_Docente();
+	}
+	public Buscar_Alumno getBuscar_Alumno(){
+		return new MySql_Buscar_Alumno();
+	}
+	public Login getLogin(){
+		return new MySql_Login();
+	}
+	
+	public static Connection obtenerConexion(){
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			String url = "jdbc:mysql://localhost:3306/srti";
+			con = DriverManager.getConnection(url, "root", "root");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return con;
+	}
+	
+}
