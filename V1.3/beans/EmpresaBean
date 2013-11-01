@@ -1,0 +1,77 @@
+package beans;
+
+public class EmpresaBean {
+	
+	int idEmpresa;
+	String nombreEmpresa;
+	String direccionEmp;
+	int telefonoEmp;
+	String fax;
+	String actividadEconomica;
+	String pagWeb;
+	String emailEmp;
+	String ciudad;
+	String tamEmpresa;
+	
+	public int getIdEmpresa() {
+		return idEmpresa;
+	}
+	public void setIdEmpresa(int idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+	public String getDireccionEmp() {
+		return direccionEmp;
+	}
+	public void setDireccionEmp(String direccionEmp) {
+		this.direccionEmp = direccionEmp;
+	}
+	public int getTelefonoEmp() {
+		return telefonoEmp;
+	}
+	public void setTelefonoEmp(int telefonoEmp) {
+		this.telefonoEmp = telefonoEmp;
+	}
+	public String getFax() {
+		return fax;
+	}
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+	public String getActividadEconomica() {
+		return actividadEconomica;
+	}
+	public void setActividadEconomica(String actividadEconomica) {
+		this.actividadEconomica = actividadEconomica;
+	}
+	public String getPagWeb() {
+		return pagWeb;
+	}
+	public void setPagWeb(String pagWeb) {
+		this.pagWeb = pagWeb;
+	}
+	public String getEmailEmp() {
+		return emailEmp;
+	}
+	public void setEmailEmp(String emailEmp) {
+		this.emailEmp = emailEmp;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	public String getTamEmpresa() {
+		return tamEmpresa;
+	}
+	public void setTamEmpresa(String tamEmpresa) {
+		this.tamEmpresa = tamEmpresa;
+	}
+
+}
