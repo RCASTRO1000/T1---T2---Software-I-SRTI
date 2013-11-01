@@ -1,0 +1,156 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
+import beans.AlumnoBean;
+import dao.interfaces.AlumnoDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_AlumnoDao
+				extends MySqlDaoFactory implements AlumnoDao{
+
+	@Override
+	public boolean registrarAlumno(String nombreAlum,
+			String apellidoPaternoAlum, String apellidoMaternoAlum,
+			String codigo, String emailAlum, int telefonoAlum, int celularAlum,
+			String direccionAlum, String escuela) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("insert into t_alumno (nombreAlum, apellidoPaternoAlum, apellidoMaternoAlum, codigo, emailAlum, telefonoAlum, celularAlum, direccionAlum, escuela)" +
+									"values ('"+nombreAlum+"','"+apellidoPaternoAlum+"','"+apellidoMaternoAlum+"','"+codigo+"','"+emailAlum+"','"+telefonoAlum+"','"+celularAlum+"','"+direccionAlum+"','"+escuela+"')");
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public Vector<AlumnoBean> mostrarAlumnos() throws Exception {
+		Vector<AlumnoBean> alumno = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_alumno");
+			
+			alumno = new Vector<AlumnoBean>();
+			while(rs.next()){
+				AlumnoBean bean = new AlumnoBean();
+				bean.setIdAlumno(rs.getInt("idAlumno"));
+				bean.setNombreAlum(rs.getString("nombreAlum"));
+				bean.setApellidoPaternoAlum(rs.getString("apellidoPaternoAlum"));
+				bean.setApellidoMaternoAlum(rs.getString("apellidoMaternoAlum"));
+				bean.setCodigo(rs.getString("codigo"));
+				bean.setEmailAlum(rs.getString("emailAlum"));
+				bean.setTelefonoAlum(rs.getInt("telefonoAlum"));
+				bean.setCelularAlum(rs.getInt("celularAlum"));
+				bean.setDireccionAlum(rs.getString("direccionAlum"));
+				bean.setEscuela(rs.getString("escuela"));
+				
+				alumno.add( bean );
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return alumno;
+		}
+
+	@Override
+	public boolean eliminarAlumno(int id) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i = stmt.executeUpdate("delete from t_alumno where idAlumno='"+id+"'"); 
+			
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+}
+
+	@Override
+	public boolean editarAlumno(AlumnoBean alumno) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("update t_alumno " +
+					"set nombreAlum = '" + alumno.getNombreAlum() + "'" +
+							" , apellidoPaternoAlum = '" + alumno.getApellidoPaternoAlum() + "'" +
+									" , apellidoMaternoAlum = '" + alumno.getApellidoMaternoAlum() + "'" +
+											" , codigo = '" + alumno.getCodigo() + "'" +
+													" , emailAlum = '" + alumno.getEmailAlum() + "'" +
+															" , telefonoAlum = '" + alumno.getTelefonoAlum() + "'" +
+																	" , celularAlum = '" + alumno.getCelularAlum() + "'" +
+																			" , direccionAlum = '" + alumno.getDireccionAlum() + "'" +
+																					" , escuela = '" + alumno.getEscuela() + "'" +
+															" where idAlumno=" + alumno.getIdAlumno());
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public AlumnoBean seleccionarAlumno(int codigo) throws Exception {
+		AlumnoBean alumno = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_alumno " +
+												"where idAlumno=" + codigo);
+			
+			if(rs.next()){
+				alumno = new AlumnoBean();
+				alumno.setIdAlumno(rs.getInt("idAlumno"));
+				alumno.setNombreAlum(rs.getString("nombreAlum"));
+				alumno.setApellidoPaternoAlum(rs.getString("apellidoPaternoAlum"));
+				alumno.setApellidoMaternoAlum(rs.getString("apellidoMaternoAlum"));
+				alumno.setCodigo(rs.getString("codigo"));
+				alumno.setEmailAlum(rs.getString("emailAlum"));
+				alumno.setTelefonoAlum(rs.getInt("telefonoAlum"));
+				alumno.setCelularAlum(rs.getInt("celularAlum"));
+				alumno.setDireccionAlum(rs.getString("direccionAlum"));
+				alumno.setEscuela(rs.getString("escuela"));
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		return alumno;
+	}
+	
+}
