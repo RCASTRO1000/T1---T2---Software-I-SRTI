@@ -1,0 +1,9 @@
+package dao.interfaces;
+
+public interface FichaDao {
+	
+	public boolean registrarFichaInscripcion(String dateIngreso, String dateFinalizada,
+			String cargo, String area, String meses,
+			String nombreEmpresa, String codigo, String informacion) throws Exception;
+	
+}
