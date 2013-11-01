@@ -1,0 +1,78 @@
+package beans;
+
+public class AlumnoBean {
+	
+	int idAlumno;
+	String nombreAlum;
+	String apellidoPaternoAlum;
+	String apellidoMaternoAlum;
+	String codigo;
+	String emailAlum;
+	int telefonoAlum;
+	int celularAlum;
+	String direccionAlum;
+	String escuela;
+	
+	
+	public int getIdAlumno() {
+		return idAlumno;
+	}
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+	public String getNombreAlum() {
+		return nombreAlum;
+	}
+	public void setNombreAlum(String nombreAlum) {
+		this.nombreAlum = nombreAlum;
+	}
+	public String getApellidoPaternoAlum() {
+		return apellidoPaternoAlum;
+	}
+	public void setApellidoPaternoAlum(String apellidoPaternoAlum) {
+		this.apellidoPaternoAlum = apellidoPaternoAlum;
+	}
+	public String getApellidoMaternoAlum() {
+		return apellidoMaternoAlum;
+	}
+	public void setApellidoMaternoAlum(String apellidoMaternoAlum) {
+		this.apellidoMaternoAlum = apellidoMaternoAlum;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	public String getEmailAlum() {
+		return emailAlum;
+	}
+	public void setEmailAlum(String emailAlum) {
+		this.emailAlum = emailAlum;
+	}
+	public int getTelefonoAlum() {
+		return telefonoAlum;
+	}
+	public void setTelefonoAlum(int telefonoAlum) {
+		this.telefonoAlum = telefonoAlum;
+	}
+	public int getCelularAlum() {
+		return celularAlum;
+	}
+	public void setCelularAlum(int celularAlum) {
+		this.celularAlum = celularAlum;
+	}
+	public String getDireccionAlum() {
+		return direccionAlum;
+	}
+	public void setDireccionAlum(String direccionAlum) {
+		this.direccionAlum = direccionAlum;
+	}
+	public String getEscuela() {
+		return escuela;
+	}
+	public void setEscuela(String escuela) {
+		this.escuela = escuela;
+	}
+
+}
