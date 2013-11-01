@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>menu</title>
+<script> 
+function abrir(url) { 
+open(url,'','top=300,left=300,width=300,height=50');
+} 
+</script> 
+</head>
+
+<body>
+<div>
+  <p>
+  	<br>
+    <br>
+	<a href="ColocarDocenteEmpresa">Sistema de Pr&aacute;cticas PreProfesionales</a><br>
+    <br>
+    <br>
+	<br>
+    <br>
+	<br>
+    <br>
+    <a href="registro_de_compras.jsp">Sistema de Registro de Tesis</a>
+  </p>
+</div>
+</body>
+</html>
