@@ -1,0 +1,70 @@
+package beans;
+
+public class FichaBean {
+	
+	int idFichaInscripcion;
+	String fechaInicio;
+	String fechaTermino;
+	String cargo;
+	String area;
+	String meses;
+	String nombreEmpresa;
+	String codigo;
+	String informacion;
+	
+	public int getIdFichaInscripcion() {
+		return idFichaInscripcion;
+	}
+	public void setIdFichaInscripcion(int idFichaInscripcion) {
+		this.idFichaInscripcion = idFichaInscripcion;
+	}
+	public String getFechaInicio() {
+		return fechaInicio;
+	}
+	public void setFechaInicio(String fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+	public String getFechaTermino() {
+		return fechaTermino;
+	}
+	public void setFechaTermino(String fechaTermino) {
+		this.fechaTermino = fechaTermino;
+	}
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
+	public String getMeses() {
+		return meses;
+	}
+	public void setMeses(String meses) {
+		this.meses = meses;
+	}
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	public String getInformacion() {
+		return informacion;
+	}
+	public void setInformacion(String informacion) {
+		this.informacion = informacion;
+	}
+
+}
