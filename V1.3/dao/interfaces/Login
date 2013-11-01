@@ -1,0 +1,18 @@
+package dao.interfaces;
+
+import beans.AdministradorBean;
+import beans.DocenteBean;
+import beans.UsuarioBean;
+
+public interface Login {
+	
+	public AdministradorBean
+	loginAdm(String administrador, String password) throws Exception;
+	
+	public DocenteBean
+	loginDoc(String usuario, String password) throws Exception;
+	
+	public UsuarioBean
+	loginUser(String usuario, String password) throws Exception;
+
+}
