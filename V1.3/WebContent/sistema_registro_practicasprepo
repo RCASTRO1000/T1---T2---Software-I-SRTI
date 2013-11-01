@@ -1,0 +1,265 @@
+<!doctype html>
+<%@page import="beans.AlumnoBean"%>
+<%@page import="beans.DocenteBean"%>
+<%@page import="beans.EmpresaBean"%>
+<%@page import="java.util.Vector"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/tabber.js"></script>
+<link rel="stylesheet" href="css/tab.css" TYPE="text/css" />
+<link rel="stylesheet" type="text/css" href="css/tcal.css" />
+<script type="text/javascript" src="js/tcal.js"></script> 
+<meta charset="utf-8">
+<title>Sistema de Registro de Pr&aacute;cticas PreProfesionales</title>
+<script> 
+function buscar(url) { 
+open(url,'','top=400,left=400,width=450,height=225');
+}
+function buscarDocente(url) { 
+open(url,'','top=400,left=400,width=430,height=275');
+}
+function correo(url) { 
+open(url,'','top=400,left=400,width=385,height=300');
+} 
+</script>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="cabecera">
+		<%
+			Vector<EmpresaBean> empresa = (Vector) request.getAttribute("empresa");
+		%> 
+		<%
+			Vector<DocenteBean> docente = (Vector) request.getAttribute("docente");
+		%>  
+		<%
+			AlumnoBean alumno = (AlumnoBean) request.getAttribute("bean");
+		%>
+		<%
+			String mensaje = "";
+        	if(request.getAttribute("mensaje") != null ){
+        		mensaje = (String)request.getAttribute("mensaje");
+        	}
+			%>
+  <%@ include file="cabecera.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu_sistema_registro_tesis">
+    <%@ include file="menu.jsp" %>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+  </div>
+  <div id="cuerpo_form">
+  <div id="menuSuperior"><a href="ColocarDocenteEmpresa">Registrar Ficha de Inscripci&oacute;n</a> &nbsp;| &nbsp;<a href="seguimiento_practica.jsp">Consultar Pr&aacute;cticas</a></div>
+<form autocomplete="off" method="post" action="RegistrarInformacionLaboral" >
+  <table width="359" border="0" align="center">
+    <tr>
+    <td>
+    <a href="javascript:buscar('buscar_alumno.jsp',window.close())"><input id="button" type="button" name="buscar" value="Buscar" /></a>
+    </td>
+    <td>
+      <input id="button" type="submit" name="submit" value="Guardar" />
+      </td>
+      <td>
+      <a href="javascript:window.print()"><img src="images/impresora.png" border="0" /></a>
+    </td>
+      <td>
+      <a href="javascript:correo('correo.jsp')"><img src="images/mail.png" border="0" /></a>
+      </td>
+    </tr>
+    <tr>
+    <td>
+    <br>
+    </td>
+    </tr>
+    <% if (alumno == null){%>
+    	<tr>
+      <td><span class="form">Escuela:</span></td>
+      <td><input id="txt_escuela" name="txt_escuela" type="text" size="27" readonly/></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" readonly/></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="txt_apellido" name="txt_apellido" type="text" size="27" readonly/></td>
+    </tr>
+    <tr>
+      <td><span class="form">C&oacute;digo:</span></td>
+      <td><input id="txt_codigo" name="txt_codigo" type="text" size="27" readonly/></td>
+    </tr>
+    <%}else{ %>
+    <tr>
+      <td><span class="form">Escuela:</span></td>
+      <td><input id="txt_escuela" name="txt_escuela" type="text" size="27" value="<%=alumno.getEscuela() %>" readonly /></td>
+    </tr>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" value="<%=alumno.getNombreAlum() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="txt_apellido" name="txt_apellido" type="text" size="27"  value="<%=(alumno.getApellidoPaternoAlum() + " " + alumno.getApellidoMaternoAlum()) %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">C&oacute;digo:</span></td>
+      <td><input id="txt_codigo" name="txt_codigo" type="text" size="27" value="<%=alumno.getCodigo() %>" readonly /></td>
+    </tr>
+    <%} %>
+    <tr>
+      <td><span class="form">Docente:</span></td>
+      <td>
+     <select name="txt_docente">
+  			<option>Buscar Docentes</option>
+  			<% if (docente == null){%>
+  			<option></option>
+  			<%}else{ %>
+  			<%
+	    		for(int i=0; i<docente.size(); i++){
+	        %>
+			<option><%=(docente.get(i).getNombredoc()+" "+docente.get(i).getApellidoPaternoDoc()+" "+docente.get(i).getApellidoMaternoDoc()) %></option>
+			<% } %>
+			<%} %>
+	</select></td>
+    </tr>
+    <tr>
+    <td>
+    <br>
+    </td>
+    </tr>
+    </table>
+    <tr>
+    <td>
+    <div id="infPracPrepro">Informe de Pr&aacute;cticas PreProfesionales:</div>
+    </td>
+    </tr>
+    <tr>
+    <div id="tab" class="tabber">
+
+     <div class="tabbertab">
+	  <h2>Informaci&oacute;n Laboral</h2>
+	  <p>
+      <table width="359" border="0" align="center">
+      <tr>
+      <td><span class="form">Fecha de Ingreso:</span></td>
+      <td><input type="text" name="dateIngreso" class="tcal" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Fecha Finalizada:</span></td>
+      <td><input type="text" name="dateFinalizada" class="tcal" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre de la Empresa:</span></td>
+      <td>
+     <select name="txt_empresa">
+  			<option>Buscar Empresa</option>
+  			<% if (empresa == null){%>
+  			<option></option>
+  			<%}else{ %>
+  			<%
+	    		for(int i=0; i<empresa.size(); i++){
+	        %>
+			<option><%=empresa.get(i).getNombreEmpresa() %></option>
+			<% } %>
+			<%} %>
+	</select></td>
+    </tr>
+    <tr>
+      <td><span class="form">&Aacute;rea:</span></td>
+      <td><input id="txt_area" name="txt_area" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Cargo:</span></td>
+      <td><input id="txt_cargo" name="txt_cargo" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Meses:</span></td>
+      <td><select name="txt_meses">
+      		<option>1 Meses</option>
+  			<option>2 Meses</option>
+			<option>3 Meses</option>
+			<option>4 Meses</option>
+      		<option>5 Meses</option>
+  			<option>6 Meses</option>
+			<option>7 Meses</option>
+			<option>8 Meses</option>
+			<option>9 Meses</option>
+            <option>10 Meses</option>
+            <option>11 Meses</option>
+            <option>12 Meses</option>
+	</select></td>
+    </tr>
+    <tr>
+    <td><span class="form">Informaci&oacute;n del Practicante:</span></td>
+    <td><textarea id="textarea" name="txt_informacion" rows="4" cols="40" resize="none" ></textarea></td>
+    </tr>
+    </table>
+      </p>
+     </div>
+</form>
+     <div class="tabbertab">
+	  <h2>Informaci&oacute;n Empresa</h2>
+	  <p>
+      <form autocomplete="off" method="post" action="RegistroEmpresa" >
+      <table width="480" border="0" align="center">
+      <tr>
+      <td><span class="form">Empresa:</span></td>
+      <td><input id="txt_nombEmpresa" name="txt_nombEmpresa" type="text" size="20" /></td>
+      <td><input id="imagen" name="imagen" type="image" src="images/guardar.png" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Direcci&oacute;n de la Empresa:</span></td>
+      <td><input id="txt_direcEmpresa" name="txt_direcEmpresa" type="text" size="20" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Tel&eacute;fono:</span></td>
+      <td><input id="txt_telEmpresa" name="txt_telEmpresa" type="text" size="20" /></td>
+      <td><span class="form">Fax de la Empresa:</span></td>
+      <td><input id="txt_fax" name="txt_fax" type="text" size="10" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Actividad Econ&oacute;mica:</span></td>
+      <td><input id="txt_actividadEco" name="txt_actividadEco" type="text" size="20" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Tama&ntilde;o de la Empresa:</span></td>
+      <td>Grande<input id="radioTamanio" name="radioTamanio" type="radio" value="Grande" />
+	  	  Mediana<input id="radioTamanio" name="radioTamanio" type="radio" value="Mediana" /></td>
+      <td>Peque&ntilde;a<input id="radioTamanio" name="radioTamanio" type="radio" value="Chica" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">P&aacute;gina Web:</span></td>
+      <td><input id="txt_paginaWeb" name="txt_paginaWeb" type="text" size="20" /></td>
+      <td><span class="form">Email:</span></td>
+      <td><input id="txt_email" name="txt_email" type="text" size="10" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Ciudad:</span></td>
+      <td><input id="txt_ciudad" name="txt_ciudad" type="text" size="20" /></td>
+    </tr>
+    </table>
+      		<%=mensaje %>
+      </p>
+     </div>
+	</div>
+  </div>
+  </form>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
