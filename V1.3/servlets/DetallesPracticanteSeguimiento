@@ -1,0 +1,79 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.AlumnoBean;
+import beans.EstadoBean;
+import beans.FichaBean;
+import dao.interfaces.Buscar_Alumno;
+import dao.interfaces.Buscar_Ficha_Docente;
+import dao.interfaces.EstadoDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class DetallesPracticanteSeguimiento
+ */
+@WebServlet("/DetallesPracticanteSeguimiento")
+public class DetallesPracticanteSeguimiento extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DetallesPracticanteSeguimiento() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 String codigo = request.getParameter("txt_codigo");
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			Buscar_Ficha_Docente var2 = dao.getBuscar_Ficha_Docente();
+			Buscar_Alumno var3 = dao.getBuscar_Alumno();
+			EstadoDao var4 = dao.getEstadoDao();
+			
+			AlumnoBean alumno = var3.buscarAlumno(codigo);
+			FichaBean ficha = var2.buscarFicha(codigo);
+			EstadoBean estado = var4.AlumnoDoc(codigo);
+
+			request.setAttribute("alumno", alumno);
+			request.setAttribute("ficha", ficha);
+			request.setAttribute("estado", estado);
+			
+			if((alumno == null) || (ficha == null) || (estado == null)){
+				request.setAttribute("mensaje", "Código incorrecto");
+				getServletContext().getRequestDispatcher("/seguimiento_practica.jsp").forward(request, response);
+				
+			}else{
+				getServletContext().getRequestDispatcher("/seguimiento_practica.jsp").forward(request, response);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
