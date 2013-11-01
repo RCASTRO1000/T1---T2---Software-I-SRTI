@@ -1,0 +1,19 @@
+package dao.interfaces;
+
+import java.util.Vector;
+
+import beans.UsuarioBean;
+
+public interface UsuarioDao {
+	
+	public boolean registrarUsuario(String nombre, String apellido, String usuario, String password) throws Exception;
+	
+	public Vector<UsuarioBean> mostrarUsuarios() throws Exception;
+	
+	public boolean eliminarUsuario(int id) throws Exception;
+	
+	public boolean editarUsuario(UsuarioBean usuario) throws Exception;
+	
+	public UsuarioBean seleccionarUsuario(int codigo) throws Exception;
+		
+}
