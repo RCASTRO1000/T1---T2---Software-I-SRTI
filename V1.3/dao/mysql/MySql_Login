@@ -1,0 +1,100 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import beans.AdministradorBean;
+import beans.DocenteBean;
+import beans.UsuarioBean;
+import dao.interfaces.Login;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_Login 
+				extends MySqlDaoFactory implements Login{
+
+	@Override
+	public AdministradorBean loginAdm(String administrador, String password)
+			throws Exception {
+		// TODO Auto-generated method stub
+		AdministradorBean administrador1 = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = 
+					stmt.executeQuery("select * from t_administrador " +
+					"where administrador='"+administrador+"' and password='"+password+"'");
+			
+			if(rs.next()){
+				administrador1 = new AdministradorBean();
+				administrador1.setIdAdministrador(rs.getInt("idAdministrador"));
+				administrador1.setNombre(rs.getString("nombre"));
+				administrador1.setApellido(rs.getString("apellido"));
+				
+			}
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		return administrador1;
+	}
+
+	@Override
+	public DocenteBean loginDoc(String usuario, String password)
+			throws Exception {
+		// TODO Auto-generated method stub
+		DocenteBean usuario1 = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = 
+					stmt.executeQuery("select * from t_docente " +
+					"where usuario='"+usuario+"'");
+			
+			if(rs.next()){
+				usuario1 = new DocenteBean();
+				usuario1.setIdDocente(rs.getInt("idDocente"));
+				usuario1.setNombredoc(rs.getString("nombredoc"));
+				usuario1.setApellidoPaternoDoc(rs.getString("apellidoPaternoDoc"));
+				usuario1.setApellidoMaternoDoc(rs.getString("apellidoMaternoDoc"));
+				
+			}
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		
+		
+		return usuario1;
+	}
+
+	@Override
+	public UsuarioBean loginUser(String usuario, String password)
+			throws Exception {
+		// TODO Auto-generated method stub
+		UsuarioBean usuario1 = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = 
+					stmt.executeQuery("select * from t_usuario " +
+					"where usuario='"+usuario+"'");
+			
+			if(rs.next()){
+				usuario1 = new UsuarioBean();
+				usuario1.setIdUsuario(rs.getInt("idUsuario"));
+				usuario1.setNombre(rs.getString("nombre"));
+				usuario1.setApellido(rs.getString("apellido"));
+				
+			}
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		return usuario1;
+	}
+
+}
