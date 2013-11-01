@@ -1,0 +1,178 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
+import beans.DocenteBean;
+import dao.interfaces.DocenteDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_DocenteDao 
+				extends MySqlDaoFactory implements DocenteDao{
+
+	@Override
+	public Vector<DocenteBean> listarDocente() throws Exception {
+		Vector<DocenteBean> docentes = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_docente");
+			
+			docentes = new Vector<DocenteBean>();
+			while(rs.next()){
+				DocenteBean bean = new DocenteBean();
+				bean.setNombredoc(rs.getString("nombredoc"));
+				bean.setApellidoPaternoDoc(rs.getString("apellidoPaternoDoc"));
+				bean.setApellidoMaternoDoc(rs.getString("apellidoMaternoDoc"));
+				
+				
+				docentes.add( bean );
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return docentes;
+		}
+
+	@Override
+	public boolean registrarDocente(String nombre, String apellidoPaterno,
+			String apellidoMaterno, int telefono, int celular, String email,
+			String usuario, String password) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("insert into t_docente (nombredoc, apellidoPaternoDoc, apellidoMaternoDoc, telefonoDoc, celularDoc, emailDoc, usuario, password)" +
+									"values ('"+nombre+"','"+apellidoPaterno+"','"+apellidoMaterno+"','"+telefono+"','"+celular+"','"+email+"','"+usuario+"','"+password+"')");
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public Vector<DocenteBean> mostrarDocentes() throws Exception {
+		Vector<DocenteBean> docente = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_docente");
+			
+			docente = new Vector<DocenteBean>();
+			while(rs.next()){
+				DocenteBean bean = new DocenteBean();
+				bean.setIdDocente(rs.getInt("idDocente"));
+				bean.setNombredoc(rs.getString("nombredoc"));
+				bean.setApellidoPaternoDoc(rs.getString("apellidoPaternoDoc"));
+				bean.setApellidoMaternoDoc(rs.getString("apellidoMaternoDoc"));
+				bean.setTelefonoDoc(rs.getInt("telefonoDoc"));
+				bean.setCelularDoc(rs.getInt("celularDoc"));
+				bean.setEmailDoc(rs.getString("emailDoc"));
+				bean.setUsuario(rs.getString("usuario"));
+				bean.setPassword(rs.getString("password"));
+				
+				docente.add( bean );
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return docente;
+		}
+
+	@Override
+	public boolean eliminarDocente(int id) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i = stmt.executeUpdate("delete from t_docente where idDocente='"+id+"'"); 
+			
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+}
+
+	@Override
+	public boolean editarDocente(DocenteBean docente) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("update t_docente " +
+					"set nombredoc = '" + docente.getNombredoc() + "'" +
+							" , apellidoPaternoDoc = '" + docente.getApellidoPaternoDoc() + "'" +
+									" , apellidoMaternoDoc = '" + docente.getApellidoMaternoDoc() + "'" +
+												" , telefonoDoc = '" + docente.getTelefonoDoc() + "'" +
+													" , celularDoc = '" + docente.getCelularDoc() + "'" +
+															" , emailDoc = '" + docente.getEmailDoc() + "'" +
+																	" , usuario = '" + docente.getUsuario() + "'" +
+																			" , password = '" + docente.getPassword() + "'" +
+															" where idDocente=" + docente.getIdDocente());
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public DocenteBean seleccionarDocente(int codigo) throws Exception {
+		DocenteBean docente = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_docente " +
+												"where idDocente=" + codigo);
+			
+			if(rs.next()){
+				docente = new DocenteBean();
+				docente.setIdDocente(rs.getInt("idDocente"));
+				docente.setNombredoc(rs.getString("nombredoc"));
+				docente.setApellidoPaternoDoc(rs.getString("apellidoPaternoDoc"));
+				docente.setApellidoMaternoDoc(rs.getString("apellidoMaternoDoc"));
+				docente.setTelefonoDoc(rs.getInt("telefonoDoc"));
+				docente.setCelularDoc(rs.getInt("celularDoc"));
+				docente.setEmailDoc(rs.getString("emailDoc"));
+				docente.setUsuario(rs.getString("usuario"));
+				docente.setPassword(rs.getString("password"));
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		return docente;
+	}
+
+}
