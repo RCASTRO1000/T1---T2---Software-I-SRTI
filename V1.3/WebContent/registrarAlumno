@@ -1,0 +1,87 @@
+<!doctype html>
+<%@page import="beans.UsuarioBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Registrar Alumno</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+<div id="cabecera">
+  <%@ include file="cabecera_adm.jsp" %>  
+</div>
+<div id="contenido">
+  <div id="menu">
+    <%@ include file="menu_adm.jsp" %>
+  </div>
+  <div id="cuerpo">
+    <div id="registro1">
+			<form autocomplete="off" method="post" action="RegistrarAlumno" >
+  <table width="359" border="0" align="center">
+    <tr>
+      <td width="138">&nbsp;</td>
+      <td width="211" align="center"><span class="tit">Registro</span><br /></td>
+    </tr>
+    <tr>
+    
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido Paterno:</span></td>
+      <td><input id="txt_apellidoP" name="txt_apellidoP" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido Materno:</span></td>
+      <td><input id="txt_apellidoM" name="txt_apellidoM" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">C&oacute;digo:</span></td>
+      <td><input id="txt_codigo" name="txt_codigo" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Email:</span></td>
+      <td><input id="txt_email" name=txt_email type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Tel&eacute;fono:</span></td>
+      <td><input id="txt_telefono" name="txt_telefono" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Celular:</span></td>
+      <td><input id="txt_celular" name="txt_celular" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Direcci&oacute;n:</span></td>
+      <td><input id="txt_direccion" name="txt_direccion" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Escuela:</span></td>
+      <td><input id="txt_escuela" name="txt_escuela" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <input id="button" type="submit" name="submit" value="Registrar"/>
+      <input id="button" type="reset" name="submit" value="Limpiar" />
+      </td>
+      
+    </tr>
+</table>
+</form>     
+</div>
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
