@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<%@page import="beans.AlumnoBean"%>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Correo Preguntas Pr&aacute;ctica</title>
+</head>
+
+<body>
+		<%
+			AlumnoBean alumno = (AlumnoBean) request.getAttribute("alumno");
+		%> 
+<div id="Cuerpo_contactenos">      
+<form autocomplete="off" method="post" action="contacto.php" onsubmit="return Validar(this);">
+  <table width="359" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center">Preguntas Pr&aacute;cticas PreProfesionales<br /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre Completo:</span></td>
+      <td><input id="name" name="name" type="text" size="27" value="<%=(alumno.getNombreAlum()+ " " +alumno.getApellidoPaternoAlum()+ " " +alumno.getApellidoMaternoAlum()) %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Correo Electr&oacute;nico:</span></td>
+      <td><input id="email" name="email" type="text" size="27" value="<%=alumno.getEmailAlum() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">C&oacute;digo:</span></td>
+      <td><input id="subject" name="subject" type="text" size="27" value="<%=alumno.getCodigo() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Preguntas: </span></td>
+      <td><textarea name="message" id="message" class="textarea" rows="5" cols="30"></textarea></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <input id="button" type="submit" name="submit" value="Enviar" />
+      <input id="button" type="reset" name="submit" value="Restablecer" />
+      </td>
+      
+    </tr>
+</table>
+</form>
+     
+        </div>
+</body>
+</html>
