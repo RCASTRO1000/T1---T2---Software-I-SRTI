@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Correo</title>
+</head>
+
+<body>
+<div id="Cuerpo_contactenos">      
+<form autocomplete="off" method="post" action="contacto.php" onsubmit="return Validar(this);">
+  <table width="359" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center">Correo<br /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre Completo:</span></td>
+      <td><input id="name" name="name" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Correo Electr&oacute;nico:</span></td>
+      <td><input id="email" name="email" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Asunto:</span></td>
+      <td><input id="subject" name="subject" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Mensaje: </span></td>
+      <td><textarea name="message" id="message" class="textarea" rows="5" cols="30"></textarea></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <input id="button" type="submit" name="submit" value="Enviar" />
+      <input id="button" type="reset" name="submit" value="Restablecer" />
+      </td>
+      
+    </tr>
+</table>
+</form>
+     
+        </div>
+</body>
+</html>
