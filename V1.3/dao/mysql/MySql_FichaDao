@@ -1,0 +1,34 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.Statement;
+
+
+import dao.interfaces.FichaDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_FichaDao 
+				extends MySqlDaoFactory implements FichaDao{
+
+	@Override
+	public boolean registrarFichaInscripcion(String fechaInicio, String fechaTermino, String cargo, String area,
+			String meses, String nombreEmpresa, String codigo, String informacion) throws Exception {
+		boolean flag = false;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("insert into t_ficha_inscripcion (fechaInicio, fechaTermino, cargo, area, meses, nombreEmpresa, codigo, informacion) " +
+					"values ('"+fechaInicio+"','"+fechaTermino+"','"+cargo+"','"+area+"','"+meses+"','"+nombreEmpresa+"','"+codigo+"','"+informacion+"')");
+			if(i==1){
+				flag = true;
+			}
+//			System.out.println(codigo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		return flag;
+	}
+
+}
