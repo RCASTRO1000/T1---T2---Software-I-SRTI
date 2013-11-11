@@ -1,0 +1,21 @@
+package dao.interfaces;
+
+import java.util.Vector;
+
+import beans.DocenteBean;
+
+public interface DocenteDao {
+			
+	public Vector<DocenteBean> listarDocente() throws Exception;
+		
+	public boolean registrarDocente(String nombre, String apellidoPaterno, String apellidoMaterno, int telefono, int celular, String email, String usuario, String password) throws Exception;
+	
+	public Vector<DocenteBean> mostrarDocentes() throws Exception;
+	
+	public boolean eliminarDocente(int id) throws Exception;
+	
+	public boolean editarDocente(DocenteBean docente) throws Exception;
+	
+	public DocenteBean seleccionarDocente(int codigo) throws Exception;
+
+}
