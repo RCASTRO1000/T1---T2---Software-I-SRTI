@@ -1,0 +1,90 @@
+<!doctype html>
+<%@page import="beans.AlumnoBean"%>
+<%@page import="java.util.Vector"%>
+
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Listar Alumnos</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="cabecera">
+  <%@ include file="cabecera_adm.jsp" %>
+</div>
+<div>
+    <%@ include file="menu_adm.jsp" %>
+</div>
+<div id="contenido1">
+  <div id="menu">
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="padding-left: 55px"><a href="javascript:correo('correo.jsp')"><span class="tit1">Enviar Correo</span></a></div>
+  </div>
+  <div id="cuerpo_form_alumnos">
+		<%
+			Vector<AlumnoBean> reportes = (Vector)request.getAttribute("reportes");
+		%>
+<h2>Lista de alumnos registrados</h2>
+<table id="cuerpo_">
+	<thead>
+		<tr>
+			<td>IDAlumno</td>
+			<td>Nombre</td>
+			<td>ApellidoP</td>
+			<td>ApellidoM</td>
+			<td>C&oacute;digo</td>
+			<td>Email</td>
+			<td>Tel&eacute;fono</td>
+			<td>Celular</td>
+			<td>Direcci&oacute;n</td>
+			<td>Escuela</td>
+		</tr>
+	</thead>
+	<tbody>
+			<%
+	    		for(int i=0; i<reportes.size(); i++){
+	        %>
+		<tr>
+			<tr class="listado">
+	        		<td><%=reportes.get(i).getIdAlumno() %></td>
+	        		<td><%=reportes.get(i).getNombreAlum() %></td>
+					<td><%=reportes.get(i).getApellidoPaternoAlum() %></td>
+					<td><%=reportes.get(i).getApellidoMaternoAlum() %></td>
+					<td><%=reportes.get(i).getCodigo() %></td>
+					<td><%=reportes.get(i).getEmailAlum() %></td>
+					<td><%=reportes.get(i).getTelefonoAlum() %></td>
+					<td><%=reportes.get(i).getCelularAlum() %></td>
+					<td><%=reportes.get(i).getDireccionAlum() %></td>
+					<td><%=reportes.get(i).getEscuela() %></td>
+	        	</tr>
+			<td id="eliminarEditar">
+				<a href="Eliminar_Alumno?codigo=<%=reportes.get(i).getIdAlumno() %>">eliminar</a>
+				<a href="Editar_Alumno?codigo1=<%=reportes.get(i).getIdAlumno() %>">editar</a>			
+			</td>
+		</tr>
+		<% } %>
+	</tbody>
+</table> 
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
