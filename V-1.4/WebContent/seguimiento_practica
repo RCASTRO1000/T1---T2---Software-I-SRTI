@@ -1,0 +1,167 @@
+<!doctype html>
+<%@page import="beans.AlumnoBean"%>
+<%@page import="beans.EstadoBean"%>
+<%@page import="beans.FichaBean"%>
+<%@page import="java.util.Vector"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Seguimiento de Tesis</title>
+<script> 
+function correo(url) { 
+open(url,'','top=400,left=400,width=385,height=300');
+} 
+function habilita(){ 
+document.frm.txt_buscar.disabled = false; 
+} 
+function deshabilita(){ 
+document.frm.txt_buscar.disabled = true; 
+document.frm.txt_buscar.value = ""; 
+} 
+function buscarDocente(url) { 
+open(url,'','top=400,left=400,width=430,height=275');
+}
+</script>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="cabecera">
+		<%
+			FichaBean ficha = (FichaBean) request.getAttribute("ficha");
+		%> 
+		<%
+			EstadoBean estado = (EstadoBean) request.getAttribute("estado");
+		%> 
+		<%
+			AlumnoBean alumno = (AlumnoBean) request.getAttribute("alumno");
+		%>
+		<%
+			String mensaje = "";
+        	if(request.getAttribute("mensaje") != null ){
+        		mensaje = (String)request.getAttribute("mensaje");
+        	}
+			%>
+  <%@ include file="cabecera.jsp" %>
+</div>
+<div>
+    <%@ include file="menu.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu">
+   <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+  </div>
+  </div>
+  <div id="cuerpo_form">
+  <div id="menuSuperior"><a href="ColocarDocenteEmpresa">Registrar Ficha de Inscripci&oacute;n</a> &nbsp;| &nbsp;<a href="seguimiento_practica.jsp">Consultar Pr&aacute;cticas</a></div>
+<form autocomplete="off" method="post" action="DetallesPracticanteSeguimiento" >
+  <table width="359" border="0" align="center">
+    <tr>
+    <td>
+    </td>
+    <td>
+      </td>
+      <td>
+      <a href="javascript:window.print()"><img src="images/impresora.png" border="0" /></a>
+    </td>
+      <td>
+      <a href="javascript:correo('correo.jsp')"><img src="images/mail.png" border="0" /></a>
+      </td>
+    </tr>
+    <tr>
+    <td>
+    <br>
+    </td>
+    </tr>
+    <% if ((alumno == null) || (estado == null) || (ficha == null)){%>
+     <tr>
+      <td><span class="tit1">C&oacute;digo:</span></td>
+      <td><input id="txt_codigo" name="txt_codigo" type="text" size="27" value=""/></td>
+      <td><input type="image" src="images/lupa.png" name="image" border="0" ></td>
+    </tr>
+    <tr>
+   		<td id="mensaje3"><%=mensaje %></td>
+    </tr>
+    	<tr>
+      <td><span class="form">Escuela:</span></td>
+      <td><input id="txt_escuela" name="txt_escuela" type="text" size="27" value="" readonly/></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" value="" readonly/></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="txt_apellido" name="txt_apellido" type="text" size="27" value="" readonly/></td>
+    </tr>
+    <tr>
+      <td><span class="form">Docente:</span></td>
+      <td><input id="txt_docente" name="txt_docente" type="text" size="27" value="" " readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre Empresa:</span></td>
+      <td><input id="txt_nomempresa" name="txt_nomempresa" type="text" size="27" value="" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Estado:</span></td>
+      <td><input id="txt_estado" name="txt_estado" type="text" size="27" value="" readonly /></td>
+    </tr>
+    <%}else{ %>
+    <tr>
+      <td><span class="tit1">C&oacute;digo:</span></td>
+      <td><input id="txt_codigo" name="txt_codigo" type="text" size="27" value="<%=alumno.getCodigo() %>" /></td>
+      <td><input type="image" src="images/lupa.png" name="image" border="0" ></td>
+    </tr>
+    <tr>
+      <td><span class="form">Escuela:</span></td>
+      <td><input id="txt_escuela" name="txt_escuela" type="text" size="27" value="<%=alumno.getEscuela() %>" readonly /></td>
+    </tr>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" value="<%=alumno.getNombreAlum() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="txt_apellido" name="txt_apellido" type="text" size="27"  value="<%=(alumno.getApellidoPaternoAlum() + " " + alumno.getApellidoMaternoAlum()) %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Docente:</span></td>
+      <td><input id="txt_docente" name="txt_docente" type="text" size="27" value="<%=estado.getNombreDoc() %>" readonly /></td>
+      <td>
+   		<a href="javascript:buscarDocente('BuscarAlumnoSeguimiento?codigo=<%=alumno.getCodigo() %>')"><img src="images/editar.png" border="0" ></a>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre Empresa:</span></td>
+      <td><input id="txt_nomempresa" name="txt_nomempresa" type="text" size="27" value="<%=ficha.getNombreEmpresa() %>" readonly /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Estado:</span></td>
+      <td><input id="txt_estado" name="txt_estado" type="text" size="27" value="<%=estado.getEstado() %>" readonly /></td>
+    </tr>
+    <%} %>
+    </table>
+    </p>
+     </div>
+	</div>
+  </div>
+  </form>    
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
