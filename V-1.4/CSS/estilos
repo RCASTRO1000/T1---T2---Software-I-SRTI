@@ -1,0 +1,500 @@
+@charset "utf-8";
+#home_cuerpo {
+	padding-top: 150px;
+	width: 234px;
+	height: 267px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#cabecera {
+	height: 100px;
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 35px;
+	background-image: url(../images/franja.png);
+}
+#textarea {
+	resize: none;
+}
+#menuSuperior {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+	padding-left: 20px;
+	padding-bottom: 15px;
+}
+#button {
+	background-color: #900;
+	color: #FFF;
+}
+#infPracPrepro {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: underline;
+	padding-left: 60px;
+}
+#libros {
+	width: 114px;
+	padding-left: 45.5px;
+}
+
+
+
+#menuSuperior a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+}
+#menuSuperior a:hover {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #00F;
+	text-decoration: none;
+}
+
+
+
+
+#logo {
+	float: left;
+	width: 100px;
+	padding-top: 7px;
+	padding-left: 50px;
+}
+#buscar {
+	background-image: url(../images/lupa.png);
+}
+
+
+#txt_cabecera {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFF;
+	padding-top: 35px;
+	width: 400px;
+	float: left;
+	padding-left: 85px;
+}
+#menu {
+	width: 215px;
+	float: left;
+	padding-top: 50px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333;
+	height: 375px;
+	background-color: #CCCCCC;
+	padding-left: 10px;
+}
+
+#menu a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+	text-decoration: none;
+}
+#menu a:hover {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+#menu1 {
+	width: 215px;
+	float: left;
+	padding-top: 50px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333;
+	height: 420px;
+	background-color: #CCCCCC;
+	padding-left: 10px;
+}
+
+#menu1 a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+	text-decoration: none;
+}
+#menu1 a:hover {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+#menu_sistema_registro_tesis {
+	width: 215px;
+	float: left;
+	padding-top: 50px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333;
+	height: 655px;
+	background-color: #CCCCCC;
+	padding-left: 10px;
+}
+#menu_sistema_registro_tesis a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+	text-decoration: none;
+}
+#menu_sistema_registro_tesis a:hover {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+}
+
+#menu_cabecera {
+	width: 215px;
+	float: left;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333;
+	height: 150px;
+	background-color: #CCCCCC;
+	padding-left: 10px;
+}
+
+
+#home {
+	float: right;
+	width: 41px;
+	padding-top: 30px;
+	padding-right: 10px;
+}
+
+#contenido {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	border-right-width: thin;
+	border-right-style: solid;
+	border-right-color: #CCCCCC;
+}
+#contenido1 {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	border-right-width: thin;
+	border-right-style: solid;
+	border-right-color: #CCCCCC;
+}
+#contenedor {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFFFFF;
+	height: inherit;
+}
+
+
+#img_contenido {
+	width: 272px;
+	padding-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#cuerpo {
+	width: 575px;
+	float: left;
+	background-color: #FFF;
+	padding-bottom: 4px;
+}
+#cuerpo_form {
+	width: 575px;
+	padding-top: 10px;
+	float: left;
+	background-color: #FFF;
+}
+#Cuerpo_contactenos {
+	width: 359px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #900;
+	text-decoration: none;
+	float: left;
+}
+
+#cuerpo_form_registro {
+	width: 575px;
+	padding-top: 50px;
+	float: left;
+	background-color: #FFF;
+	padding-bottom: 6px;
+}
+#cuerpo_form_listar {
+	width: 575px;
+	padding-top: 50px;
+	float: left;
+	background-color: #FFF;
+}
+
+
+#cuerpo_form1 {
+	width: 555px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #666666;
+	text-decoration: none;
+	padding-left: 20px;
+	background-color: #FFF;
+	padding-bottom: 20px;
+}
+
+.tit {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #990000;
+}
+.tit1 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #990000;
+}
+.form {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666;
+}
+.listado {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+
+
+
+
+#pie {
+	height: 40px;
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #999999;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 10px;
+	float: left;
+}
+#pies {
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#mensaje {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #999999;
+	text-decoration: none;
+	width: 400px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 110px;
+	padding-left: 40px;
+}
+#mensaje1 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #999999;
+	text-decoration: none;
+	width: 200px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 70px;
+}
+#saldo {
+	width: 200px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 35px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+}
+#logout {
+	float: right;
+	width: 41px;
+	padding-top: 30px;
+	padding-right: 10px;
+}
+#ayuda {
+	float: right;
+	width: 41px;
+	padding-top: 30px;
+	padding-right: 10px;
+}
+#registro {
+	width: 200px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 35px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+	float: left;
+}
+#registro1 {
+	width: 200px;
+	padding-top: 35px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	text-decoration: none;
+	float: left;
+	padding-left: 100px;
+}
+
+#cuerpo_form_usuarios {
+
+	width: 575px;
+	padding-top: 50px;
+	float: left;
+	background-color: #FFF;
+}
+#cuerpo_form_alumnos {
+
+	width: 575px;
+	padding-top: 50px;
+	float: left;
+	background-color: #FFF;
+	overflow: scroll;
+}
+#cuerpo_form_ficha {
+
+	width: 575px;
+	height: 370px;
+	padding-top: 50px;
+	float: left;
+	background-color: #FFF;
+	overflow: scroll;
+}
+#mensaje2 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+#mensaje3 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #720000;
+}
+.alumnoLista {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+#eliminarEditar {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #900;
+	}
+#eliminarEditar a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #900;
+	text-decoration: none;
+	}
+#eliminarEditar a:hover {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #900;
+	text-decoration: none;
+	}
+#about {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	padding-top: 35px;
+	padding-bottom: 15px;
+}
+#about a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	color: #900;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align: center;
+	padding-top: 35px;
+	
+}
+#about a:hover {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	color: #900;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align: center;
+	padding-top: 35px;
+	
+}
+#about_inte {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: justify;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 20px;	
+}
+#about_img {
+	margin-right: auto;
+	margin-left: auto;
+	width: 250px;
+}
