@@ -1,0 +1,65 @@
+<!doctype html>
+<%@page import="beans.FichaBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Editar Alumno</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+<div id="cabecera">
+  <%@ include file="cabecera.jsp" %>  
+</div>
+<div>
+    <%@ include file="menu.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu">
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+  </div>
+<div id="cuerpo">
+    <div id="registro1">
+		<%
+		FichaBean ficha = (FichaBean) request.getAttribute("bean");
+		%>
+            <form autocomplete="off" action="Editar_Ficha" method="post">
+            <input type="hidden" name="txt_idFichaInscripcion" value="<%=ficha.getIdFichaInscripcion() %>" />
+            Fecha Inicio: 
+            <input type="text" name="dateIngreso" value="<%=ficha.getFechaInicio() %>" />
+            Fecha Termino: 
+            <input type="text" name="dateFinalizada" value="<%=ficha.getFechaTermino() %>" />
+            Cargo: 
+            <input type="text" name="txt_cargo" value="<%=ficha.getCargo() %>" />
+            &Aacute;rea: 
+            <input type="text" name="txt_area" value="<%=ficha.getArea() %>" />
+            Meses: 
+            <input type="text" name="txt_meses" value="<%=ficha.getMeses() %>" />
+            Nombre Empresa: 
+            <input type="text" name="txt_empresa" value="<%=ficha.getNombreEmpresa() %>" />
+            C&oacute;digo: 
+            <input type="text" name="txt_codigo" value="<%=ficha.getCodigo() %>" />
+            Informaci&oacute;n: 
+            <textarea id="textarea" name="txt_informacion" rows="3" cols="40" resize="none" ><%=ficha.getInformacion() %> </textarea>
+            <br> <br>
+            <input id="button" type="submit" value="Guardar datos" />
+            </form>   
+		</div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
