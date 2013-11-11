@@ -1,0 +1,67 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.AlumnoBean;
+import beans.FichaBean;
+import dao.interfaces.Buscar_Alumno;
+import dao.interfaces.Buscar_Ficha_Docente;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class DetallesPracticante
+ */
+@WebServlet("/DetallesPracticante")
+public class DetallesPracticante extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DetallesPracticante() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 String codigo = request.getParameter("codigo");
+			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			Buscar_Alumno var2 = dao.getBuscar_Alumno();
+			Buscar_Ficha_Docente var3 = dao.getBuscar_Ficha_Docente();
+			
+			AlumnoBean alumno = var2.buscarAlumno(codigo);
+			FichaBean ficha = var3.buscarFicha(codigo);
+			
+			request.setAttribute("alumno", alumno);
+			request.setAttribute("ficha", ficha);
+			
+			getServletContext().getRequestDispatcher("/detallesPractica.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
