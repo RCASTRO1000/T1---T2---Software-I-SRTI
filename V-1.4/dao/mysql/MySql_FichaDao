@@ -1,0 +1,155 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
+import beans.FichaBean;
+
+import dao.interfaces.FichaDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_FichaDao 
+				extends MySqlDaoFactory implements FichaDao{
+
+	@Override
+	public boolean registrarFichaInscripcion(String fechaInicio, String fechaTermino, String cargo, String area,
+			String meses, String nombreEmpresa, String codigo, String informacion) throws Exception {
+		boolean flag = false;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("insert into t_ficha_inscripcion (fechaInicio, fechaTermino, cargo, area, meses, nombreEmpresa, codigo, informacion) " +
+					"values ('"+fechaInicio+"','"+fechaTermino+"','"+cargo+"','"+area+"','"+meses+"','"+nombreEmpresa+"','"+codigo+"','"+informacion+"')");
+			if(i==1){
+				flag = true;
+			}
+//			System.out.println(codigo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		return flag;
+	}
+
+	@Override
+	public Vector<FichaBean> mostrarFichas() throws Exception {
+		// TODO Auto-generated method stub
+		Vector<FichaBean> ficha = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_ficha_inscripcion");
+			
+			ficha = new Vector<FichaBean>();
+			while(rs.next()){
+				FichaBean bean = new FichaBean();
+				bean.setIdFichaInscripcion(rs.getInt("idFichaInscripcion"));
+				bean.setFechaInicio(rs.getString("fechaInicio"));
+				bean.setFechaTermino(rs.getString("fechaTermino"));
+				bean.setCargo(rs.getString("cargo"));
+				bean.setArea(rs.getString("area"));
+				bean.setMeses(rs.getString("meses"));
+				bean.setNombreEmpresa(rs.getString("nombreEmpresa"));
+				bean.setCodigo(rs.getString("codigo"));
+				bean.setInformacion(rs.getString("informacion"));
+				
+				ficha.add( bean );
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return ficha;
+		}
+
+	@Override
+	public boolean eliminarFicha(int id) throws Exception {
+		// TODO Auto-generated method stub
+boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i = stmt.executeUpdate("delete from t_ficha_inscripcion where idFichaInscripcion='"+id+"'"); 
+			
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+}
+
+	@Override
+	public boolean editarFicha(FichaBean ficha) throws Exception {
+		// TODO Auto-generated method stub
+boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("update t_ficha_inscripcion " +
+					"set fechaInicio = '" + ficha.getFechaInicio() + "'" +
+							" , fechaTermino = '" + ficha.getFechaTermino() + "'" +
+									" , cargo = '" + ficha.getCargo() + "'" +
+											" , area = '" + ficha.getArea() + "'" +
+													" , meses = '" + ficha.getMeses() + "'" +
+															" , nombreEmpresa = '" + ficha.getNombreEmpresa() + "'" +
+																	" , codigo = '" + ficha.getCodigo() + "'" +
+																			" , informacion = '" + ficha.getInformacion() + "'" +
+															" where idFichaInscripcion=" + ficha.getIdFichaInscripcion());
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public FichaBean seleccionarFicha(int codigo) throws Exception {
+		// TODO Auto-generated method stub
+		FichaBean ficha = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_ficha_inscripcion " +
+												"where idFichaInscripcion=" + codigo);
+			
+			if(rs.next()){
+				ficha = new FichaBean();
+				ficha.setIdFichaInscripcion(rs.getInt("idFichaInscripcion"));
+				ficha.setFechaInicio(rs.getString("fechaInicio"));
+				ficha.setFechaTermino(rs.getString("fechaTermino"));
+				ficha.setCargo(rs.getString("cargo"));
+				ficha.setArea(rs.getString("area"));
+				ficha.setMeses(rs.getString("meses"));
+				ficha.setNombreEmpresa(rs.getString("nombreEmpresa"));
+				ficha.setCodigo(rs.getString("codigo"));
+				ficha.setInformacion(rs.getString("informacion"));
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		
+		return ficha;
+	}
+	
+}
