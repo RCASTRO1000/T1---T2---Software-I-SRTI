@@ -1,0 +1,66 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.DocenteBean;
+import beans.EmpresaBean;
+import dao.interfaces.DocenteDao;
+import dao.interfaces.EmpresaDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class ColocarDocente
+ */
+@WebServlet("/ColocarDocenteEmpresa")
+public class ColocarDocenteEmpresa extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ColocarDocenteEmpresa() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {			
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			DocenteDao var1 = dao.getDocenteDao();
+			EmpresaDao var2 = dao.getEmpresaDao();
+
+			Vector<DocenteBean> docente = var1.listarDocente();
+			Vector<EmpresaBean> empresa = var2.listarEmpresa();
+			
+			request.setAttribute("empresa", empresa);			
+			request.setAttribute("docente", docente);
+			
+			getServletContext().getRequestDispatcher("/sistema_registro_practicasprepo.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
