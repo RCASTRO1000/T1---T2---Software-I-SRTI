@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<title>Insert title here</title>
+</head>
+<body>
+<body>
+<div id="Cuerpo_contactenos">
+<div id="about_img">
+<img alt="USMP - SRTI" src="images\usmp.png">
+</div>
+<div id="about">
+Sistema de Registro de Tesis e Informe.
+<br>
+<br>
+Version: 1.0
+<br>
+<br>
+(c) Copyright <a href="integrantes.jsp">Grupo de Ingeniería de Software I</a> 2013. <br>	
+<br>
+Todos los derechos reservados.
+</div>
+</div>
+</body>
+</html>
