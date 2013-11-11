@@ -1,0 +1,53 @@
+<!doctype html>
+<%@page import="beans.AlumnoBean"%>
+<%@page import="java.util.Vector"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Buscar Alumno</title>
+</head>
+
+<body>
+<div id="Cuerpo_contactenos">  
+		<%
+			Vector<AlumnoBean> alumno = (Vector) request.getAttribute("bean");
+		%>    
+<form name="formBuscar" autocomplete="off" method="post" action="BuscarAlumno" >
+  <table width="250" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center">Seleccionar Alumno<br /></td>
+    </tr>
+    <tr>
+      <td>
+      <br>
+      </td>
+    </tr>
+    <tr>
+        <td><a href=javascript:history.back(1)><img src="images/reload.png" border="0" ></a></td>
+    </tr>
+    <tr>
+      <td><span class="form">Nombre</span></td>
+      <td><span class="form">Apellido</span></td>
+      <td><span class="form">C&oacute;digo</span></td>
+    </tr>
+   			<%
+	    		for(int i=0; i<alumno.size(); i++){
+	        %>
+    <tr class="alumnoLista">
+    				<td><%=alumno.get(i).getNombreAlum() %></td>
+	        		<td><%=(alumno.get(i).getApellidoPaternoAlum() + " " + alumno.get(i).getApellidoMaternoAlum()) %></td>
+					<td><%=alumno.get(i).getCodigo() %></td>
+      <td><a href="ColocarAlumno?codigo=<%=alumno.get(i).getCodigo() %>" target="new"><img src="images/select.png" border="0" ></a></td>
+    </tr>
+    <% } %>
+</table>
+</form>
+
+     
+        </div>
+</body>
+</html>
