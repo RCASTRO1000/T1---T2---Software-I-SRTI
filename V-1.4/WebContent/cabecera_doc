@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cabecera</title>
+
+</head>
+
+<body>
+<div>
+  <div id="logo"><img src="images/logo.png" border="0" width="100" height="85"></a></div>
+  <div id="txt_cabecera">Sistema de Registro de Tesis e Informaci&oacute;n</div>
+  <div id="home"><img src="images/home.png" border="0" width="41" height="41"></a></div>
+  <div id="logout"><a href="index.jsp"><img src="images/logout.png" border="0" width="41" height="41"></a></div>
+  <div id="ayuda"><a href="pdf/ManualDocente.pdf"" onClick="window.open(this.href, this.target, 'width=780,height=500,scrollbars=YES'); return false;" alt="" ><img src="images/ayuda.png" border="0" width="41" height="41"></a></div>
+</div>
+</body>
+</html>
