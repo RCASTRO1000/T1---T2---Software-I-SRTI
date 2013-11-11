@@ -1,0 +1,21 @@
+package dao.interfaces;
+
+import java.util.Vector;
+
+import beans.FichaBean;
+
+public interface FichaDao {
+	
+	public boolean registrarFichaInscripcion(String dateIngreso, String dateFinalizada,
+			String cargo, String area, String meses,
+			String nombreEmpresa, String codigo, String informacion) throws Exception;
+	
+	public Vector<FichaBean> mostrarFichas() throws Exception;
+	
+	public boolean eliminarFicha(int id) throws Exception;
+	
+	public boolean editarFicha(FichaBean ficha) throws Exception;
+	
+	public FichaBean seleccionarFicha(int codigo) throws Exception;
+
+}
