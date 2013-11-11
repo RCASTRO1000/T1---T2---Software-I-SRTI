@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/tabber.js"></script>
+<link rel="stylesheet" href="css/tab.css" TYPE="text/css" />
+<link rel="stylesheet" type="text/css" href="css/tcal.css" />
+<script type="text/javascript" src="js/tcal.js"></script> 
+<meta charset="utf-8">
+<title>Mensaje de Conformidad</title>
+<script> 
+function buscar(url) { 
+open(url,'','top=400,left=400,width=450,height=225');
+}
+function buscarDocente(url) { 
+open(url,'','top=400,left=400,width=430,height=275');
+}
+function correo(url) { 
+open(url,'','top=400,left=400,width=385,height=300');
+} 
+</script>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="cabecera">
+  <%@ include file="cabecera.jsp" %>
+</div>
+<div>
+    <%@ include file="menu.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu">
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+  </div>
+  <div id="cuerpo">
+  <div id="mensaje">
+  			<%
+				String mensaje = (String)request.getAttribute("mensaje");
+			%>
+			
+			<%=mensaje %>
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
