@@ -1,0 +1,12 @@
+package dao.interfaces;
+
+import beans.DocenteBean;
+import beans.FichaBean;
+
+public interface Buscar_Ficha_Docente {
+		
+	public DocenteBean buscarDocente(String nombreDoc, String apellidoDoc) throws Exception;
+	
+	public FichaBean buscarFicha(String codigo) throws Exception; 
+
+}
