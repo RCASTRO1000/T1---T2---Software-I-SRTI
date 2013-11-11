@@ -1,0 +1,72 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.interfaces.AlumnoDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class RegistrarUsuario
+ */
+@WebServlet("/RegistrarAlumno")
+public class RegistrarAlumno extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegistrarAlumno() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+PrintWriter out = response.getWriter();
+		
+		try {
+			String nombreAlum = request.getParameter("txt_nombre");
+			String apellidoPaternoAlum = request.getParameter("txt_apellidoP");
+			String apellidoMaternoAlum = request.getParameter("txt_apellidoM");
+			String codigo = request.getParameter("txt_codigo");
+			String emailAlum = request.getParameter("txt_email");
+			Integer telefonoAlum = Integer.parseInt(request.getParameter("txt_telefono"));
+			Integer celularAlum = Integer.parseInt(request.getParameter("txt_celular"));
+			String direccionAlum = request.getParameter("txt_direccion");
+			String escuela = request.getParameter("txt_escuela");
+			
+			DaoFactory v1 = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			AlumnoDao v2 = v1.getAlumnoDao();
+			boolean v3 = v2.registrarAlumno(nombreAlum, apellidoPaternoAlum, apellidoMaternoAlum, codigo, emailAlum, telefonoAlum, celularAlum, direccionAlum, escuela);
+				
+			if(v3){
+				request.setAttribute("mensaje_adm", "Registro Satisfactorio");
+			}else{
+				request.setAttribute("mensaje_adm", "ocurrio un error");
+			}
+			getServletContext().getRequestDispatcher("/mensaje_adm.jsp")
+				.forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
