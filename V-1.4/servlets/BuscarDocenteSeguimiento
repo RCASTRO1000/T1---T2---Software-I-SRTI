@@ -1,0 +1,80 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.AlumnoBean;
+import beans.DocenteBean;
+import dao.interfaces.Buscar_Alumno;
+import dao.interfaces.Buscar_Ficha_Docente;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class BuscarDocenteSeguimiento
+ */
+@WebServlet("/BuscarDocenteSeguimiento")
+public class BuscarDocenteSeguimiento extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BuscarDocenteSeguimiento() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		try {
+			 String codigo = request.getParameter("txt_codigo");
+			 String nombre = request.getParameter("txt_buscarDoc");
+			 String apellido = request.getParameter("txt_buscarDocAp");
+			
+				
+				
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			Buscar_Ficha_Docente var2 = dao.getBuscar_Ficha_Docente();
+			Buscar_Alumno var3 = dao.getBuscar_Alumno();
+			
+			AlumnoBean alumno = var3.buscarAlumno(codigo);
+			DocenteBean bean = var2.buscarDocente(nombre, apellido);
+				
+			if((bean == null) && (alumno == null)){
+				request.setAttribute("mensaje", "Datos incorrectos");
+				getServletContext().getRequestDispatcher("/buscar_docente2.jsp")
+													.forward(request, response);
+			}else{
+				
+				request.setAttribute("bean", bean);
+				request.setAttribute("alumno", alumno);
+							
+				getServletContext().getRequestDispatcher("/buscar_docente3.jsp")
+					.forward(request, response);
+				
+			}
+			
+						
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
