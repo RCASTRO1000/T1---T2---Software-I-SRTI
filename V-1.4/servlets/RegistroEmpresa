@@ -1,0 +1,82 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.EmpresaBean;
+
+import dao.interfaces.EmpresaDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class RegistroEmpresa
+ */
+@WebServlet("/RegistroEmpresa")
+public class RegistroEmpresa extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegistroEmpresa() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			PrintWriter out = response.getWriter();
+		
+		try {
+			String nombre = request.getParameter("txt_nombEmpresa");
+			String direccion = request.getParameter("txt_direcEmpresa");
+			Integer telefono = Integer.parseInt(request.getParameter("txt_telEmpresa"));
+			String fax = request.getParameter("txt_fax");
+			String actecono = request.getParameter("txt_actividadEco");
+			String tamanio = request.getParameter("radioTamanio");
+			String paginaweb = request.getParameter("txt_paginaWeb");
+			String email = request.getParameter("txt_email");
+			String ciudad = request.getParameter("txt_ciudad");
+			
+			DaoFactory v1 = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			EmpresaDao v2 = v1.getEmpresaDao();
+			EmpresaDao var2 = v1.getEmpresaDao();
+			
+			boolean bean = v2.registrarEmpresa(nombre, direccion, telefono, fax, actecono, tamanio, paginaweb, email, ciudad);
+			Vector<EmpresaBean> empresa = var2.listarEmpresa();
+			
+			request.setAttribute("empresa", empresa);
+//			if(bean){
+//				request.setAttribute("empresa", empresa);
+//				getServletContext().getRequestDispatcher("/sistema_registro_tesis.jsp")
+//				.forward(request, response);
+//			}else{
+//				request.setAttribute("mensaje", "ocurrio un error");
+//				
+//			}
+			getServletContext().getRequestDispatcher("/sistema_registro_practicasprepo.jsp")
+			.forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+}
