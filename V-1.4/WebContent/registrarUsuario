@@ -1,0 +1,80 @@
+<!doctype html>
+<%@page import="beans.UsuarioBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Registrar Usuario</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+<div id="cabecera">
+  <%@ include file="cabecera_adm.jsp" %>  
+</div>
+<div>
+    <%@ include file="menu_adm.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu">
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="padding-left: 55px"><a href="javascript:correo('correo.jsp')"><span class="tit1">Enviar Correo</span></a></div>
+  </div>
+  <div id="cuerpo">
+    <div id="registro1">
+			<form autocomplete="off" method="post" action="RegistrarUsuario" >
+  <table width="359" border="0" align="center">
+    <tr>
+      <td width="138">&nbsp;</td>
+      <td width="211" align="center"><span class="tit">Registro</span><br /></td>
+    </tr>
+    <tr>
+    
+      <td><span class="form">Nombre:</span></td>
+      <td><input id="txt_nombre" name="txt_nombre" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Apellido:</span></td>
+      <td><input id="txt_apellido" name="txt_apellido" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Usuario:</span></td>
+      <td><input id="txt_usuario" name="txt_usuario" type="text" size="27" /></td>
+    </tr>
+    <tr>
+      <td><span class="form">Contrase&ntilde;a:</span></td>
+      <td><input id="txt_contrasena" name="txt_contrasena" type="password" size="27" /></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <input id="button" type="submit" name="submit" value="Registrar"/>
+      <input id="button" type="reset" name="submit" value="Limpiar" />
+      </td>
+      
+    </tr>
+</table>
+</form>     
+</div>
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
