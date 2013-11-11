@@ -1,0 +1,138 @@
+package dao.mysql;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Vector;
+
+import beans.EstadoBean;
+
+import dao.interfaces.EstadoDao;
+import daofactory.MySqlDaoFactory;
+
+public class MySql_EstadoDao
+				extends MySqlDaoFactory implements EstadoDao{
+
+	@Override
+	public boolean registrarEstado(String codigoAlum, String nombreDoc,
+			String estado) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("insert into t_estadoAlum (codigoAlum, nombreDoc, estado)" +
+									"values ('"+codigoAlum+"','"+nombreDoc+"','"+estado+"')");
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public Vector<EstadoBean> Listar(String nombreDoc) throws Exception {
+		Vector<EstadoBean> estado = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_estadoAlum" +
+					" where nombreDoc='"+nombreDoc+"'");
+			
+			estado = new Vector<EstadoBean>();
+			while(rs.next()){
+				EstadoBean bean = new EstadoBean();
+				bean.setIdEstado(rs.getInt("idEstado"));
+				bean.setCodigoAlum(rs.getString("codigoAlum"));
+				bean.setNombreDoc(rs.getString("nombreDoc"));
+				bean.setEstado(rs.getString("estado"));
+				
+				estado.add( bean );
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return estado;
+		}
+
+	@Override
+	public boolean actualizarEstado(String estado, int codigo) throws Exception {
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("update t_estadoAlum " +
+									"set estado = '" + estado + "'" +
+									" where idEstado=" + codigo);
+			if(i==1){
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+	@Override
+	public EstadoBean AlumnoDoc(String codigo) throws Exception {
+		EstadoBean estado = null;
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_estadoAlum" +
+					" where codigoAlum='"+codigo+"'");
+			
+			while(rs.next()){
+				estado = new EstadoBean();
+				estado.setIdEstado(rs.getInt("idEstado"));
+				estado.setCodigoAlum(rs.getString("codigoAlum"));
+				estado.setNombreDoc(rs.getString("nombreDoc"));
+				estado.setEstado(rs.getString("estado"));
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+		}
+		return estado;
+		}
+
+	@Override
+	public boolean editarDocente(String codigo, String nombredoc) throws Exception {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		
+		try {
+			Connection con = MySqlDaoFactory.obtenerConexion();
+			Statement stmt = con.createStatement();
+			
+			int i= stmt.executeUpdate("update t_estadoalum " +
+					"set nombreDoc = '" + nombredoc + "'" +
+							" where codigoAlum='"+codigo+"'");
+			if(i==1){
+				flag = true;
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e.getMessage());
+		}
+		
+		return flag;
+	}
+
+}
