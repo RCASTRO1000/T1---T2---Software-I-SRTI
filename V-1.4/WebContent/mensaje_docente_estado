@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Buscar Docente</title>
+</head>
+<body>
+<div id="Cuerpo_contactenos">
+<form name="formBuscar" autocomplete="off" method="post" action="EditarEstado" >
+  <table width="250" border="0" align="center">
+    <tr>
+      <td width="123">&nbsp;</td>
+      <td width="225" align="center">Seleccionar Docente<br /></td>
+    </tr>
+    <tr>
+      <td>
+      <br>
+      </td>
+    </tr>
+    <tr>
+     		<%
+				String mensaje = (String)request.getAttribute("mensaje");
+			%>
+			
+	<tr>
+   		<td width="150" id="mensaje3"><%=mensaje %></td>
+    </tr>
+    <tr>
+    	<td></td>
+    	<td></td>
+    	<td><a href="javascript:window.close();"><img src="images/salir.png"></a></td>
+    </tr>
+</table>
+</form>
+
+     
+        </div>
+</body>
+</html>
