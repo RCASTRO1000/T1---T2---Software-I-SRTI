@@ -1,0 +1,81 @@
+<!doctype html>
+<%@page import="beans.DocenteBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="Keywords" content="recursos, css, diseño web, xhtml, software libre" />
+<meta name="Description" content="Pagina dedicada a recursos de diseño web con CSS, en castellano" />
+<meta name="Author" content="Mikel Morote Donazar - Praxis Iru&ntilde;ea SLL" />
+<meta name="Subject" content="Recursos CSS" />
+<meta name="Language" content="espa&ntilde;ol" />
+<meta name="Robots" content="index, follow" />
+<link rel="alternate" href="http://www.araudi.net/indice.html" title="Indice de contenidos" media="all" lang="es" />
+<link rel="stylesheet" href="css/menu-1.css" type="text/css" />
+<title>Portada del Docente</title>
+<script> 
+function abrir(url) { 
+	open(url,'','top=300,left=300,width=300,height=50');
+} 
+function about(url) { 
+	open(url,'','top=400,left=400,width=385,height=300');
+} 
+function correo(url) { 
+	open(url,'','top=300,left=450,width=385,height=300');
+} 
+</script> 
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+		<%
+  			DocenteBean docente = (DocenteBean) request.getAttribute("docentebean");
+		%> 
+<div id="cabecera">
+  <%@ include file="cabecera_doc.jsp" %>  
+</div>
+<div id="menu4">
+<ul>
+<li class="nivel1"><a href="#" class="nivel1">Inicio</a>
+</li>
+<li class="nivel1"><a href="Lista_Asignada_Practicas?codigo=<%=docente.getIdDocente() %>" class="nivel1">Mostrar Casos Asignados</a>
+</li>
+<li class="nivel1"><a href="pdf/ManualDocente.pdf" onClick="window.open(this.href, this.target, 'width=780,height=500,scrollbars=YES'); return false;" alt="" class="nivel1">Manual</a>
+	<ul>
+		<li><a href="javascript:about('about.jsp')" >Acerca de SRTI</a></li>
+	</ul>
+  </li>
+</li>
+<li class="nivel1"><a href="javascript:correo('correo.jsp')" class="nivel1">Enviar Correo</a>
+</li>
+</li>
+  <li class="nivel1"><a href="index.jsp" class="nivel1">Logout</a>
+</li>
+</ul>
+</div>
+<div id="contenido">
+<div id="menu">
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+  </div>
+  <div id="cuerpo">
+  <br>
+  <br>
+    <div id="img_contenido"><img src="images/docente.png"></div>
+  </div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
