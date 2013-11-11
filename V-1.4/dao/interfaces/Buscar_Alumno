@@ -1,0 +1,13 @@
+package dao.interfaces;
+
+import java.util.Vector;
+
+import beans.AlumnoBean;
+
+public interface Buscar_Alumno {
+	
+	public AlumnoBean buscarAlumno(String codigo) throws Exception;
+	
+	public Vector<AlumnoBean> buscarAlumnoAp(String apellido) throws Exception;	
+
+}
