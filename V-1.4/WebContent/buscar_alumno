@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<script type="text/javascript" src="js/validar.js"></script>
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+<title>Buscar Alumno</title>
+</head>
+ <script language="JavaScript"> 
+ 
+   function habilita(){ 
+    document.frm.txt_buscar.disabled = false; 
+   } 
+   
+   function habilitaAp(){ 
+    document.frm.txt_buscarAp.disabled = false; 
+   }
+ 
+   function deshabilita(){ 
+    document.frm.txt_buscar.disabled = true; 
+    document.frm.txt_buscar.value = ""; 
+   } 
+   
+   function deshabilitaAp(){ 
+    document.frm.txt_buscarAp.disabled = true; 
+    document.frm.txt_buscarAp.value = ""; 
+   } 
+ 
+  </script>
+<body>
+<div id="Cuerpo_contactenos">      
+			<%
+			String mensaje = "";
+        	if(request.getAttribute("mensaje") != null ){
+        		mensaje = (String)request.getAttribute("mensaje");
+        	}
+			%>
+<form name="frm" autocomplete="off" method="get" action="BuscarAlumno" realizable=" ">
+  <table border="0" align="left"> 
+    <tr>
+      <td>Buscar Alumno</td>
+    </tr>
+    <tr>
+      <td>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	  <input type="radio" name="radioBuscar" value="Codigo" onClick="habilita();deshabilitaAp()">C&oacute;digo
+      </td>
+      <td>
+	  <input type="radio" name="radioBuscar" value="Apellido" onClick="habilitaAp();deshabilita()">Apellido
+      </td>
+    </tr>
+    <tr>
+		<td><input id="txt_buscar" name="txt_buscar" type="text" size="15" disabled /></td>
+        <td><input id="txt_buscarAp" name="txt_buscarAp" type="text" size="15" disabled /></td>
+        <td><input type="image" src="images/lupa.png" name="image" border="0" ></td>
+    </tr>
+    <tr>
+   		<td id="mensaje2"><%=mensaje %></td>
+    </tr>
+    </table>
+</form>
+
+     
+        </div>
+</body>
+</html>
