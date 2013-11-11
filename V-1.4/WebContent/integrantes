@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="css/estilos.css" rel="stylesheet" type="text/css">
+<title>Insert title here</title>
+</head>
+<body>
+<body>
+<div id="Cuerpo_contactenos">
+<div id="about_img">
+<img alt="USMP - SRTI" src="images\usmp.png">
+</div>
+  <div id="about_inte">
+  <div style="width: 170px; float: left; padding-bottom: 15px;">
+  Raúl Castro Cepulo
+   <br>
+  Hernan Lurita Paredes
+   <br>
+  Liz Díaz Angulo
+   <br>
+  Ignacio Garay Llacsa
+   <br>
+  Edgar Gamarra Rojas
+   <br>
+  Eric Huaripata Dueñas
+   <br>
+  Jonathan Pinto Valiente
+   <br>
+  Gianfranco Paoli Rosas
+   <br>
+  Renatto Carcheri Cordero
+  </div>
+  <div style="width: 150px; float: left; padding-bottom: 15px;">
+   - Jefe de Proyecto
+   <br>
+    - Líder Técnico
+    <br>
+     -  Analista 1
+     <br>
+     - Analista 2
+     <br>
+     - Diseñador 1
+   <br>
+  - Diseñador 2
+   <br>
+   - Programador 1
+   <br>
+  - Programador 2
+   <br>
+  - Programador 3
+  </div>
+  </div>
+</div>
+</body>
+</html>
