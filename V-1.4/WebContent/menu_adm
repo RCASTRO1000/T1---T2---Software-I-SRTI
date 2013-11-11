@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="Keywords" content="recursos, css, diseño web, xhtml, software libre" />
+<meta name="Description" content="Pagina dedicada a recursos de diseño web con CSS, en castellano" />
+<meta name="Author" content="Mikel Morote Donazar - Praxis Iru&ntilde;ea SLL" />
+<meta name="Subject" content="Recursos CSS" />
+<meta name="Language" content="espa&ntilde;ol" />
+<meta name="Robots" content="index, follow" />
+<link rel="alternate" href="http://www.araudi.net/indice.html" title="Indice de contenidos" media="all" lang="es" />
+<link rel="stylesheet" href="css/menu-1.css" type="text/css" />
+<title>menu</title>
+<script> 
+function abrir(url) { 
+open(url,'','top=300,left=300,width=300,height=50');
+}
+function correo(url) { 
+open(url,'','top=300,left=450,width=385,height=300');
+} 
+function about(url) { 
+	open(url,'','top=400,left=400,width=385,height=300');
+} 
+</script> 
+</head>
+
+<body>
+<div id="menu4">
+<ul>
+<li class="nivel1"><a href="portada_adm.jsp" class="nivel1">Inicio</a>
+</li>
+  <li class="nivel1"><a href="#" class="nivel1">Usuarios</a>
+	<ul>
+		<li><a href="registrarUsuario.jsp">Registrar</a></li>
+		<li><a href="Mostrar_Usuario">Listar</a></li>
+	</ul>
+  </li>
+  <li class="nivel1"><a href="#" class="nivel1">Docentes</a>
+	<ul>
+		<li><a href="registrarDocente.jsp">Registrar</a></li>
+		<li><a href="Mostrar_Docente">Listar</a></li>
+	</ul>
+</li>
+  <li class="nivel1"><a href="#" class="nivel1">Alumnos</a>
+	<ul>
+		<li><a href="registrarAlumno.jsp">Registrar</a></li>
+		<li><a href="Mostrar_Alumno">Listar</a></li>
+	</ul>
+</li>
+<li class="nivel1"><a href="pdf/ManualAdmin.pdf" onClick="window.open(this.href, this.target, 'width=780,height=500,scrollbars=YES'); return false;" alt="" class="nivel1">Manual</a>
+	<ul>
+		<li><a href="javascript:about('about.jsp')" >Acerca de SRTI</a></li>
+	</ul>
+  </li>
+<li class="nivel1"><a href="index.jsp" class="nivel1">Logout</a>
+</li>
+</ul>
+</div>
+</body>
+</html>
