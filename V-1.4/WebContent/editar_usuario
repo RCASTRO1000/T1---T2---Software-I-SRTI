@@ -1,0 +1,57 @@
+<!doctype html>
+<%@page import="beans.UsuarioBean"%>
+<html>
+<head>
+<link href="images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+<meta charset="utf-8">
+<title>Editar Usuario</title>
+<style type="text/css">
+body {
+	background-color: #FFF;
+}
+</style>
+<link href="css/estilos.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+<div id="cabecera">
+  <%@ include file="cabecera_adm.jsp" %>  
+</div>
+<div>
+    <%@ include file="menu_adm.jsp" %>
+</div>
+<div id="contenido">
+  <div id="menu">
+  <br>
+    <br>
+    <br>
+    <br>
+    <br>              
+    <div id="libros"><img src="images/libros.png"></div>
+  </div>
+<div id="cuerpo">
+    <div id="registro1">
+		<%
+			UsuarioBean usuario = (UsuarioBean) request.getAttribute("bean");
+		%>
+            <form autocomplete="off" action="Editar_Usuario" method="post">
+            <input type="hidden" name="txt_idUsuario" value="<%=usuario.getIdUsuario() %>" />
+            Nombre: 
+            <input type="text" name="txt_nombre" value="<%=usuario.getNombre() %>" />
+            Apellido: 
+            <input type="text" name="txt_apellido" value="<%=usuario.getApellido() %>" />
+            Usuario: 
+            <input type="text" name="txt_usuario" value="<%=usuario.getUsuario() %>" />
+            Password: 
+            <input type="text" name="txt_password" value="<%=usuario.getPassword() %>" />
+            <br> <br>
+            <input id="button" type="submit" value="Guardar datos" />
+            </form>   
+		</div>
+</div>
+<div id="pies">
+<div id="pie"><%@ include file="pie.jsp" %></div>
+</div>
+</body>
+</html>
