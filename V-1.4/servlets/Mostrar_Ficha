@@ -1,0 +1,61 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.FichaBean;
+import dao.interfaces.FichaDao;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class Mostrar_Ficha
+ */
+@WebServlet("/Mostrar_Ficha")
+public class Mostrar_Ficha extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Mostrar_Ficha() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			 FichaDao variable1 = dao.getFichaDao();
+			 Vector<FichaBean> reportes = variable1.mostrarFichas();
+			 			 
+			 request.setAttribute("reportes", reportes);
+			 getServletContext().getRequestDispatcher("/mostrarFicha.jsp")
+			 											.forward(request, response);
+			 
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+			
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
