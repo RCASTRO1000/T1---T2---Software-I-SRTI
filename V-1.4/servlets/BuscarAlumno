@@ -1,0 +1,96 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Vector;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.AlumnoBean;
+
+import dao.interfaces.Buscar_Alumno;
+import daofactory.DaoFactory;
+
+/**
+ * Servlet implementation class BuscarAlumno
+ */
+@WebServlet("/BuscarAlumno")
+public class BuscarAlumno extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BuscarAlumno() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		try {
+			 String apellido = request.getParameter("txt_buscarAp");
+			 String codigo = request.getParameter("txt_buscar");
+			
+			if(codigo!=null){
+			DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+			Buscar_Alumno var2 = dao.getBuscar_Alumno();
+			AlumnoBean bean = var2.buscarAlumno(codigo);
+				
+			if(bean == null){
+				request.setAttribute("mensaje", "Datos incorrectos");
+				getServletContext().getRequestDispatcher("/buscar_alumno.jsp")
+													.forward(request, response);
+			}else{
+				
+				request.setAttribute("bean", bean);
+							
+				getServletContext().getRequestDispatcher("/buscar_alumno1.jsp")
+					.forward(request, response);
+				
+			}
+			}else if(apellido!=null)	{
+				DaoFactory dao = DaoFactory.getDAOFactory(DaoFactory.MYSQL);
+				Buscar_Alumno var2 = dao.getBuscar_Alumno();
+				Vector<AlumnoBean> bean = var2.buscarAlumnoAp(apellido);
+				
+				if(request.getParameter("txt_buscarAp") == ""){
+					request.setAttribute("mensaje", "Datos incorrectos");
+					getServletContext().getRequestDispatcher("/buscar_alumno.jsp")
+														.forward(request, response);
+				}else{
+					
+					request.setAttribute("bean", bean);
+								
+					getServletContext().getRequestDispatcher("/buscar_alumno2.jsp")
+						.forward(request, response);
+					
+				}
+			}else {
+				request.setAttribute("mensaje", "Datos incorrectos");
+				getServletContext().getRequestDispatcher("/buscar_alumno.jsp")
+													.forward(request, response);
+			}
+						
+		} catch (Exception e) {
+			// TODO: handle exception
+			out.print(e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
