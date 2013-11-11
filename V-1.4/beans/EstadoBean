@@ -1,0 +1,35 @@
+package beans;
+
+public class EstadoBean {
+	
+	int idEstado;
+	String codigoAlum;
+	String nombreDoc;
+	String estado;
+	
+	public int getIdEstado() {
+		return idEstado;
+	}
+	public void setIdEstado(int idEstado) {
+		this.idEstado = idEstado;
+	}
+	public String getCodigoAlum() {
+		return codigoAlum;
+	}
+	public void setCodigoAlum(String codigoAlum) {
+		this.codigoAlum = codigoAlum;
+	}
+	public String getNombreDoc() {
+		return nombreDoc;
+	}
+	public void setNombreDoc(String nombreDoc) {
+		this.nombreDoc = nombreDoc;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+}
